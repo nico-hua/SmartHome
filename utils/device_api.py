@@ -26,6 +26,11 @@ class Light:
         """关闭灯光"""
         print("[Light] 灯光已关闭")
 
+    def get_brightness(self):
+        """获取灯光当前亮度"""
+        print("[Light] 获取灯光当前亮度")
+        return 50
+
 
 class AirConditioner:
     """
@@ -52,6 +57,11 @@ class AirConditioner:
     def turn_off(self):
         """关闭空调"""
         print("[AirConditioner] 空调已关闭")
+
+    def get_temperature(self):
+        """获取空调当前温度"""
+        print("[AirConditioner] 获取空调当前温度")
+        return 25
 
 
 class TV:

@@ -25,13 +25,17 @@ class FilterModule:
 
             Examples:
             - Instruction: "用户需要打开客厅的空调"
-              Devices: ["air_conditioner"]
+              Devices:
+              ["air_conditioner"]
             - Instruction: "用户需要调亮卧室的灯光"
-              Devices: ["light"]
+              Devices:
+              ["light"]
             - Instruction: "用户需要开启电影之夜模式"
-              Devices: ["light", "tv", "speaker"]
+              Devices:
+              ["light", "tv", "speaker"]
             - Instruction: "用户需要调整灯光、音乐和温度等设备来准备派对。"
-              Devices: ["light", "speaker", "air_conditioner"]
+              Devices:
+              ["light", "speaker", "air_conditioner"]
 
             Instruction: {instruction}
             Devices:
@@ -54,7 +58,7 @@ class FilterModule:
             self.logger.log(f"LLM Response: {response}")
 
             # Step 2: 解析 LLM 的响应并生成 JSON
-            devices = json.loads(response)  # 假设 LLM 返回的是 JSON 格式的设备列表
+            devices = json.loads(response)
             return json.dumps({
                 "status": "success",
                 "devices": devices

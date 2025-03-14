@@ -16,12 +16,6 @@ class ImplementModule:
             2. Generate Python code that implements the task plan using the provided APIs.
             3. Ensure the code is complete and executable.
 
-            Device APIs:
-            {device_apis}
-
-            Task Plan:
-            {task_plan}
-
             Examples:
             - Task Plan:
               1. Turn off the lights.
