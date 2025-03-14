@@ -1,6 +1,7 @@
 from langchain.prompts import PromptTemplate
 from langchain_community.chat_models import ChatTongyi
 from utils.logger import Logger
+from utils.device_api import light, tv, speaker, air_conditioner, curtain
 
 class ImplementModule:
     def __init__(self):
@@ -84,3 +85,22 @@ class ImplementModule:
         except Exception as e:
             self.logger.log(f"Code Generation Error: {str(e)}", level="ERROR")
             return ""  # 如果出错，返回空字符串
+        
+    def execute_code(self, code):
+        """
+        执行生成的 Python 代码。
+        :param code: 生成的 Python 代码（字符串）
+        """
+        try:
+            # 将设备对象注入到 exec 的执行环境中
+            device_objects = {
+                "light": light,
+                "tv": tv,
+                "speaker": speaker,
+                "air_conditioner": air_conditioner,
+                "curtain": curtain
+            }
+            exec(code, device_objects)
+            print("代码执行成功！")
+        except Exception as e:
+            print(f"代码执行失败: {str(e)}")
