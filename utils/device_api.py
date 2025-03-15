@@ -90,7 +90,7 @@ class TV:
         print(f"[TV] 电视音量设置为 {volume}")
 
 
-class Speaker:
+class AudioPlayer:
     """
     音响设备 API
     """
@@ -99,18 +99,18 @@ class Speaker:
         设置音响音量。
         :param volume: 音量值 (0-100)
         """
-        print(f"[Speaker] 音响音量设置为 {volume}")
+        print(f"[AudioPlayer] 音响音量设置为 {volume}")
 
     def play_music(self, song):
         """
         播放音乐。
         :param song: 歌曲名称
         """
-        print(f"[Speaker] 正在播放歌曲: {song}")
+        print(f"[AudioPlayer] 正在播放歌曲: {song}")
 
     def stop_music(self):
         """停止播放音乐"""
-        print("[Speaker] 音乐已停止")
+        print("[AudioPlayer] 音乐已停止")
 
 
 class Curtain:
@@ -137,5 +137,5 @@ class Curtain:
 light = Light()
 air_conditioner = AirConditioner()
 tv = TV()
-speaker = Speaker()
+audio_player = AudioPlayer()
 curtain = Curtain()

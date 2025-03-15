@@ -1,7 +1,7 @@
 from langchain.prompts import PromptTemplate
 from langchain_community.chat_models import ChatTongyi
 from utils.logger import Logger
-from utils.device_api import light, tv, speaker, air_conditioner, curtain
+from utils.device_api import light, tv, audio_player, air_conditioner, curtain
 
 class ImplementModule:
     def __init__(self):
@@ -20,16 +20,16 @@ class ImplementModule:
             - Task Plan:
               1. Turn off the lights.
               2. Turn on the TV.
-              3. Set the speaker volume to 50%.
+              3. Set the audio_player volume to 50%.
               Device APIs:
               light: "light.set_brightness(brightness: int)"
               tv: "tv.set_power(status: bool)"
-              speaker: "speaker.set_volume(volume: int)"
+              audio_player: "audio_player.set_volume(volume: int)"
               Python Code:
               ```python
               light.set_brightness(0)
               tv.set_power(True)
-              speaker.set_volume(50)
+              audio_player.set_volume(50)
               ```
 
             - Task Plan:
@@ -67,7 +67,7 @@ class ImplementModule:
                 "task_plan": task_plan_str,
                 "device_apis": device_apis_str
             }).content
-            self.logger.log(f"LLM Response: {response}")
+            self.logger.log(f"Implement Module:\n{response}")
 
             # Step 3: 提取生成的 Python 代码
             # 假设 LLM 返回的代码包含在 ```python ``` 标记中
@@ -90,7 +90,7 @@ class ImplementModule:
             device_objects = {
                 "light": light,
                 "tv": tv,
-                "speaker": speaker,
+                "audio_player": audio_player,
                 "air_conditioner": air_conditioner,
                 "curtain": curtain
             }

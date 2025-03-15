@@ -9,7 +9,7 @@ if __name__ == "__main__":
     device_descriptions = {
         "light": "controls the brightness of lights",
         "tv": "turns the TV on/off",
-        "speaker": "controls audio output",
+        "audio_player": "controls audio output",
         "air_conditioner": "controls the temperature of the room"
     }
     result = plan_module.generate_plan(instruction, device_descriptions)

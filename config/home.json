@@ -1,0 +1,110 @@
+{
+  "home": {
+    "name": "我的家",
+    "rooms": [
+      {
+        "name": "客厅",
+        "devices": [
+          {
+            "type": "light",
+            "id": "light_living_room",
+            "location": "天花板中央",
+            "description": "控制客厅的灯光亮度和颜色。"
+          },
+          {
+            "type": "tv",
+            "id": "tv_living_room",
+            "location": "电视墙",
+            "description": "客厅的电视，支持 HDMI 和流媒体播放。"
+          },
+          {
+            "type": "audio_player",
+            "id": "speaker_living_room",
+            "location": "电视两侧",
+            "description": "客厅的音响系统，支持播放音乐和电影音效。"
+          },
+          {
+            "type": "curtain",
+            "id": "curtain_living_room",
+            "location": "窗户",
+            "description": "客厅的窗帘，支持自动开合和位置调节。"
+          }
+        ]
+      },
+      {
+        "name": "主卧",
+        "devices": [
+          {
+            "type": "light",
+            "id": "light_master_bedroom",
+            "location": "床头",
+            "description": "控制主卧的灯光亮度和颜色。"
+          },
+          {
+            "type": "air_conditioner",
+            "id": "ac_master_bedroom",
+            "location": "墙壁",
+            "description": "主卧的空调，支持温度和模式调节。"
+          },
+          {
+            "type": "curtain",
+            "id": "curtain_master_bedroom",
+            "location": "窗户",
+            "description": "主卧的窗帘，支持自动开合和位置调节。"
+          }
+        ]
+      },
+      {
+        "name": "次卧",
+        "devices": [
+          {
+            "type": "light",
+            "id": "light_guest_bedroom",
+            "location": "天花板中央",
+            "description": "控制次卧的灯光亮度和颜色。"
+          },
+          {
+            "type": "air_conditioner",
+            "id": "ac_guest_bedroom",
+            "location": "墙壁",
+            "description": "次卧的空调，支持温度和模式调节。"
+          },
+          {
+            "type": "curtain",
+            "id": "curtain_guest_bedroom",
+            "location": "窗户",
+            "description": "次卧的窗帘，支持自动开合和位置调节。"
+          }
+        ]
+      },
+      {
+        "name": "厨房",
+        "devices": [
+          {
+            "type": "light",
+            "id": "light_kitchen",
+            "location": "天花板中央",
+            "description": "控制厨房的灯光亮度和颜色。"
+          }
+        ]
+      },
+      {
+        "name": "浴室",
+        "devices": [
+          {
+            "type": "light",
+            "id": "light_bathroom",
+            "location": "天花板中央",
+            "description": "控制浴室的灯光亮度和颜色。"
+          },
+          {
+            "type": "curtain",
+            "id": "curtain_bathroom",
+            "location": "窗户",
+            "description": "浴室的窗帘，支持自动开合和位置调节。"
+          }
+        ]
+      }
+    ]
+  }
+}

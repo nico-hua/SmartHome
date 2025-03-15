@@ -1,7 +1,6 @@
 from langchain.prompts import PromptTemplate
 from langchain_community.chat_models import ChatTongyi
 from utils.logger import Logger
-import json
 
 class PlanModule:
     def __init__(self):
@@ -16,16 +15,13 @@ class PlanModule:
             2. Break down the instruction into clear and executable steps.
             3. Each step should describe a specific action to be performed by a device.
 
-            Device Descriptions:
-            {device_descriptions}
-
             Examples:
             - Instruction: "用户需要开启电影之夜模式"
-              Device Descriptions: "light: controls the brightness of lights, tv: turns the TV on/off, speaker: controls audio output"
+              Device Descriptions: "light: controls the brightness of lights, tv: turns the TV on/off, audio_player: controls audio output"
               Plan:
               1. Turn off the lights.
               2. Turn on the TV.
-              3. Set the speaker volume to 50%.
+              3. Set the audio_player volume to 50%.
 
             - Instruction: "用户需要调高卧室的温度。"
               Device Descriptions: "air_conditioner: controls the temperature of the room"
@@ -33,6 +29,8 @@ class PlanModule:
               1. Increase the air conditioner temperature by 2°C.
 
             Instruction: {instruction}
+            Device Descriptions:
+            {device_descriptions}
             Plan:
             """
         )
@@ -54,7 +52,7 @@ class PlanModule:
                 "instruction": instruction,
                 "device_descriptions": device_descriptions_str
             }).content
-            self.logger.log(f"LLM Response: {response}")
+            self.logger.log(f"Plan Module:\n{response}")
 
             # Step 3: 解析 LLM 的响应并返回任务计划
             plan = response.strip().split("\n")  # 假设 LLM 返回的是多行文本，每行是一个步骤

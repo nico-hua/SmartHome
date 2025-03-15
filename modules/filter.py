@@ -7,7 +7,7 @@ class FilterModule:
     def __init__(self, available_devices):
         """
         初始化 Filter 模块。
-        :param available_devices: 家庭中已有的物理设备类型列表，例如 ["air_conditioner", "light", "tv", "speaker", "curtain"]
+        :param available_devices: 家庭中已有的物理设备类型列表，例如 ["air_conditioner", "light", "tv", "audio_player", "curtain"]
         """
         self.logger = Logger()
         self.llm = ChatTongyi(model="qwen-turbo", temperature=0.1)  # 使用 ChatTongyi 的 LLM
@@ -32,10 +32,10 @@ class FilterModule:
               ["light"]
             - Instruction: "用户需要开启电影之夜模式"
               Devices:
-              ["light", "tv", "speaker"]
+              ["light", "tv", "audio_player"]
             - Instruction: "用户需要调整灯光、音乐和温度等设备来准备派对。"
               Devices:
-              ["light", "speaker", "air_conditioner"]
+              ["light", "audio_player", "air_conditioner"]
 
             Instruction: {instruction}
             Devices:
@@ -55,7 +55,7 @@ class FilterModule:
                 "instruction": instruction,
                 "available_devices": ", ".join(self.available_devices)
             }).content
-            self.logger.log(f"LLM Response: {response}")
+            self.logger.log(f"Filter Module:\n{response}")
 
             # Step 2: 解析 LLM 的响应并生成 JSON
             devices = json.loads(response)

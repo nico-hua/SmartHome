@@ -13,7 +13,7 @@ if __name__ == "__main__":
     if clarify_result_dict["status"] == "success" :
         instruction = clarify_result_dict["instruction"]
         # 过滤模块
-        available_devices = ["air_conditioner", "light", "tv", "speaker", "curtain"]
+        available_devices = ["air_conditioner", "light", "tv", "audio_player", "curtain"]
         filter_module = FilterModule(available_devices)
         filter_result = filter_module.filter_devices(instruction)
         filter_result_dict = json.loads(filter_result)
@@ -24,7 +24,7 @@ if __name__ == "__main__":
                 "light": "Turns the light on/off, gets the current birghtness, and controls brightness and color, and .",
                 "air_conditioner": "Controls the temperature and mode of the air conditioner, and get the current air conditioning temperature.",
                 "tv": "Controls power, channel, and volume of the TV.",
-                "speaker": "Controls volume, plays and stops music.",
+                "audio_player": "Controls volume, plays and stops music.",
                 "curtain": "Controls the position of the curtain, opens and closes it."
             }
             filtered_device_descriptions = {device: device_descriptions[device] for device in filtered_devices}
@@ -44,10 +44,10 @@ if __name__ == "__main__":
                 - tv.set_channel(channel: int): Set the TV channel. The channel number is an integer.
                 - tv.set_volume(volume: int): Set the TV volume, the volume value is 0-100.
                 """,
-                "speaker": """
-                - speaker.set_volume(volume: int): Set the audio volume, the volume value is 0-100.
-                - speaker.play_music(song: str): Play music, song is the song title.
-                - speaker.stop_music(): Stop playing music.
+                "audio_player": """
+                - audio_player.set_volume(volume: int): Set the audio volume, the volume value is 0-100.
+                - audio_player.play_music(song: str): Play music, song is the song title.
+                - audio_player.stop_music(): Stop playing music.
                 """,
                 "air_conditioner": """
                 - air_conditioner.turn_on(): Turn on the air conditioner.

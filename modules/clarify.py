@@ -14,7 +14,7 @@ class ClarifyModule:
             Follow these rules:
             1. If the instruction is clear, executable, and contains all necessary information, respond with "SUCCESS: <normalized instruction>".
             2. If the instruction involves context (e.g., previous interactions), you may need combine the context to summarize it into a clear and complete instruction.
-            3. If the instruction is unclear or missing details, ask the user for clarification by providing a question, and respond with "NEED_CLARIFY: <question>".
+            3. If the instruction is unclear or missing details (e.g., location), ask the user for clarification by providing a question, and respond with "NEED_CLARIFY: <question>".
             4. If the instruction is not executable (e.g., due to lack of devices or invalid request), respond with "FAILURE: <reason>".
 
             Examples:
@@ -49,7 +49,7 @@ class ClarifyModule:
 
             # Step 2: 调用 LLM 进行指令澄清
             response = self.chain.invoke({"user_input": user_input, "context": context_str}).content
-            self.logger.log(f"LLM Response: {response}")
+            self.logger.log(f"Clarify Module:\n{response}")
 
             # Step 3: 解析 LLM 的响应并生成 JSON
             if response.startswith("SUCCESS:"):

@@ -4,7 +4,7 @@ import json
 if __name__ == "__main__":
 
     # 家庭中已有的物理设备类型（英文）
-    available_devices = ["air_conditioner", "light", "tv", "speaker", "curtain"]
+    available_devices = ["air_conditioner", "light", "tv", "audio_player", "curtain"]
 
     # 初始化 Filter 模块
     filter_module = FilterModule(available_devices)

@@ -27,10 +27,10 @@ if __name__ == "__main__":
         - tv.set_channel(channel: int): Set the TV channel. The channel number is an integer.
         - tv.set_volume(volume: int): Set the TV volume, the volume value is 0-100.
         """,
-        "speaker": """
-        - speaker.set_volume(volume: int): Set the audio volume, the volume value is 0-100.
-        - speaker.play_music(song: str): Play music, song is the song title.
-        - speaker.stop_music(): Stop playing music.
+        "audio_player": """
+        - audio_player.set_volume(volume: int): Set the audio volume, the volume value is 0-100.
+        - audio_player.play_music(song: str): Play music, song is the song title.
+        - audio_player.stop_music(): Stop playing music.
         """,
         "air_conditioner": """
         - air_conditioner.set_temperature(temperature: int): Set the air conditioning temperature. The temperature value is an integer.
