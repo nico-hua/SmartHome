@@ -2,19 +2,24 @@ from modules.clarify import ClarifyModule
 from modules.filter import FilterModule
 from modules.plan import PlanModule
 from modules.implement import ImplementModule
+from modules.feedback import FeedbackModule
 import json
+import uuid
 
 if __name__ == "__main__":
+    # 使用UUID区分每次流程
+    uuid = str(uuid.uuid4())
+    print("UUID:", uuid)
     user_input = input("请输入指令：")
     # 澄清模块
-    clarify_module = ClarifyModule()
+    clarify_module = ClarifyModule(uuid)
     clarify_result = clarify_module.interact_with_user(user_input)
     clarify_result_dict = json.loads(clarify_result)
     if clarify_result_dict["status"] == "success" :
         instruction = clarify_result_dict["instruction"]
         # 过滤模块
         available_devices = ["air_conditioner", "light", "tv", "audio_player", "curtain"]
-        filter_module = FilterModule(available_devices)
+        filter_module = FilterModule(available_devices, uuid)
         filter_result = filter_module.filter_devices(instruction)
         filter_result_dict = json.loads(filter_result)
         if filter_result_dict["status"] == "success" :
@@ -28,7 +33,7 @@ if __name__ == "__main__":
                 "curtain": "Controls the position of the curtain, opens and closes it."
             }
             filtered_device_descriptions = {device: device_descriptions[device] for device in filtered_devices}
-            plan_module = PlanModule()
+            plan_module = PlanModule(uuid)
             plan_result = plan_module.generate_plan(instruction, filtered_device_descriptions)
             # 执行模块
             device_apis = {
@@ -63,9 +68,12 @@ if __name__ == "__main__":
                 """
             }
             filtered_device_apis = {device: device_apis[device] for device in filtered_devices}
-            implement_module = ImplementModule()
+            implement_module = ImplementModule(uuid)
             implement_result = implement_module.generate_code(plan_result, filtered_device_apis)
             implement_module.execute_code(implement_result)
+            # 反馈模块
+            feedback_module = FeedbackModule(uuid)
+            feedback_module.collect_feedback()
         else:
             print(filter_result_dict["reason"])
     else:

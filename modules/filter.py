@@ -1,15 +1,19 @@
 from langchain.prompts import PromptTemplate
 from langchain_community.chat_models import ChatTongyi
 from utils.logger import Logger
+from utils.redis_util import RedisUtils
 import json
 
 class FilterModule:
-    def __init__(self, available_devices):
+    def __init__(self, available_devices, uuid):
         """
         初始化 Filter 模块。
         :param available_devices: 家庭中已有的物理设备类型列表，例如 ["air_conditioner", "light", "tv", "audio_player", "curtain"]
+        :param uuid: 流程的标识
         """
         self.logger = Logger()
+        self.redis = RedisUtils()
+        self.uuid = uuid
         self.llm = ChatTongyi(model="qwen-turbo", temperature=0.1)  # 使用 ChatTongyi 的 LLM
         self.available_devices = available_devices
         self.filter_prompt = PromptTemplate(
@@ -59,6 +63,9 @@ class FilterModule:
 
             # Step 2: 解析 LLM 的响应并生成 JSON
             devices = json.loads(response)
+            # Step 3: 将结果存储到redis
+            key = f"Filter:{self.uuid}"
+            self.redis.set_value(key, devices)
             return json.dumps({
                 "status": "success",
                 "devices": devices

@@ -2,10 +2,17 @@ from langchain.prompts import PromptTemplate
 from langchain_community.chat_models import ChatTongyi
 from utils.logger import Logger
 import json
+from utils.redis_util import RedisUtils
 
 class ClarifyModule:
-    def __init__(self):
+    def __init__(self, uuid):
+        """"
+        初始化 ClarifyModule 模块
+        :param uuid: 本次流程的唯一标识符
+        """
         self.logger = Logger()
+        self.redis = RedisUtils()
+        self.uuid = uuid
         self.llm = ChatTongyi(model="qwen-turbo", temperature=0.1)  # 使用 ChatTongyi 的 LLM
         self.clarify_prompt = PromptTemplate(
             input_variables=["user_input", "context"],
@@ -99,13 +106,19 @@ class ClarifyModule:
             # Step 2: 记录用户指令
             self.context.append(f"User: {user_input}")
 
-            # Step 3: 如果指令明确或不可执行，返回结果
-            if result_dict["status"] in ["success", "failure", "error"]:
+            # Step 3: 如果指令不可执行或出错，返回结果
+            if result_dict["status"] in ["failure", "error"]:
                 return result
             
-            # Step 4: 记录LLM回复
+            # Step 4: 如果指令明确，返回结果并存储到redis
+            if result_dict["status"] == "success":
+                key = f"Clarify:{self.uuid}"
+                self.redis.set_value(key, result_dict["instruction"])
+                return result
+            
+            # Step 5: 记录LLM回复
             self.context.append(f"AI: {result_dict['reason']}")
 
-            # Step 5: 指令不明确，提示用户输入补充信息
+            # Step 6: 指令不明确，提示用户输入补充信息
             print(result_dict["reason"])  # 打印 LLM 的澄清问题
             user_input = input("您的回答: ")  # 获取用户补充信息

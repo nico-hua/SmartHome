@@ -2,10 +2,17 @@ from langchain.prompts import PromptTemplate
 from langchain_community.chat_models import ChatTongyi
 from utils.logger import Logger
 from utils.device_api import light, tv, audio_player, air_conditioner, curtain
+from utils.redis_util import RedisUtils
 
 class ImplementModule:
-    def __init__(self):
+    def __init__(self, uuid):
+        """
+        初始化 ImplementModule 模块
+        :param uuid: 唯一标识符
+        """
         self.logger = Logger()
+        self.redis = RedisUtils()
+        self.uuid = uuid
         self.llm = ChatTongyi(model="qwen-plus", temperature=0.1)  # 使用 ChatTongyi 的 qwen-plus
         self.implement_prompt = PromptTemplate(
             input_variables=["task_plan", "device_apis"],
@@ -75,6 +82,9 @@ class ImplementModule:
                 code = response.split("```python")[1].split("```")[0].strip()
             else:
                 code = response.strip()
+            # Step 4: 将结果存储到redis
+            key = f"Implement:{self.uuid}"
+            self.redis.set_value(key, code)
             return code
         except Exception as e:
             self.logger.log(f"Code Generation Error: {str(e)}", level="ERROR")

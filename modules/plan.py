@@ -1,10 +1,13 @@
 from langchain.prompts import PromptTemplate
 from langchain_community.chat_models import ChatTongyi
 from utils.logger import Logger
+from utils.redis_util import RedisUtils
 
 class PlanModule:
-    def __init__(self):
+    def __init__(self, uuid):
         self.logger = Logger()
+        self.redis = RedisUtils()
+        self.uuid = uuid
         self.llm = ChatTongyi(model="qwen-plus", temperature=0.1)  # 使用 ChatTongyi 的 qwen-plus
         self.plan_prompt = PromptTemplate(
             input_variables=["instruction", "device_descriptions"],
@@ -56,6 +59,9 @@ class PlanModule:
 
             # Step 3: 解析 LLM 的响应并返回任务计划
             plan = response.strip().split("\n")  # 假设 LLM 返回的是多行文本，每行是一个步骤
+            # Step 4: 将任务计划存储到 redis
+            key = f"Plan:{self.uuid}"
+            self.redis.set_value(key, plan)
             return plan
         except Exception as e:
             self.logger.log(f"Plan Generation Error: {str(e)}", level="ERROR")
