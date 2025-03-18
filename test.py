@@ -3,6 +3,7 @@ from modules.filter import FilterModule
 from modules.plan import PlanModule
 from modules.implement import ImplementModule
 from modules.feedback import FeedbackModule
+from tools.rag import RAGModule
 import json
 import uuid
 
@@ -19,8 +20,8 @@ if __name__ == "__main__":
         instruction = clarify_result_dict["instruction"]
         # 过滤模块
         available_devices = ["air_conditioner", "light", "tv", "audio_player", "curtain"]
-        filter_module = FilterModule(available_devices, uuid)
-        filter_result = filter_module.filter_devices(instruction)
+        filter_module = FilterModule(available_devices, uuid, instruction)
+        filter_result = filter_module.filter_devices()
         filter_result_dict = json.loads(filter_result)
         if filter_result_dict["status"] == "success" :
             filtered_devices = filter_result_dict["devices"]
@@ -33,8 +34,8 @@ if __name__ == "__main__":
                 "curtain": "Controls the position of the curtain, opens and closes it."
             }
             filtered_device_descriptions = {device: device_descriptions[device] for device in filtered_devices}
-            plan_module = PlanModule(uuid)
-            plan_result = plan_module.generate_plan(instruction, filtered_device_descriptions)
+            plan_module = PlanModule(uuid,instruction, filtered_device_descriptions)
+            plan_result = plan_module.generate_plan()
             # 执行模块
             device_apis = {
                 "light": """
@@ -70,10 +71,16 @@ if __name__ == "__main__":
             filtered_device_apis = {device: device_apis[device] for device in filtered_devices}
             implement_module = ImplementModule(uuid)
             implement_result = implement_module.generate_code(plan_result, filtered_device_apis)
-            implement_module.execute_code(implement_result)
-            # 反馈模块
-            feedback_module = FeedbackModule(uuid)
-            feedback_module.collect_feedback()
+            implement_result = implement_module.execute_code(implement_result)
+            if implement_result == "SUCCESS":
+                # 将澄清指令存储到向量数据库
+                rag = RAGModule()
+                rag.embed_and_store_instruction(instruction, uuid)
+                # 反馈模块
+                feedback_module = FeedbackModule(uuid)
+                feedback_module.collect_feedback()
+            else:
+                print(implement_result)
         else:
             print(filter_result_dict["reason"])
     else:

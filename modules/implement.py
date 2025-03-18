@@ -16,7 +16,8 @@ class ImplementModule:
         self.llm = ChatTongyi(model="qwen-plus", temperature=0.1)  # 使用 ChatTongyi 的 qwen-plus
         self.implement_prompt = PromptTemplate(
             input_variables=["task_plan", "device_apis"],
-            template="""
+            template=
+            """
             You are a smart home AI assistant. Your task is to generate executable Python code based on a task plan and the API descriptions of available devices.
             Follow these rules:
             1. Analyze the task plan and the device API descriptions.
@@ -105,6 +106,8 @@ class ImplementModule:
                 "curtain": curtain
             }
             exec(code, device_objects)
-            print("代码执行成功！")
+            self.logger.log(f"Code Execution Successful")
+            return "SUCCESS"
         except Exception as e:
-            print(f"代码执行失败: {str(e)}")
+            self.logger.log(f"Code Execution Error: {str(e)}", level="ERROR")
+            return f"执行失败: {str(e)}"

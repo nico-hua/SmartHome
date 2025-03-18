@@ -16,7 +16,8 @@ class ClarifyModule:
         self.llm = ChatTongyi(model="qwen-turbo", temperature=0.1)  # 使用 ChatTongyi 的 LLM
         self.clarify_prompt = PromptTemplate(
             input_variables=["user_input", "context"],
-            template="""
+            template=
+            """
             You are a smart home AI assistant that can complete user instructions with the help of home devices. Your task is to evaluate user instructions.
             Follow these rules:
             1. If the instruction is clear, executable, and contains all necessary information, respond with "SUCCESS: <normalized instruction>".

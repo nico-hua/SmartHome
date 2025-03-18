@@ -3,7 +3,7 @@ from modules.filter import FilterModule
 from modules.plan import PlanModule
 from modules.implement import ImplementModule
 from modules.feedback import FeedbackModule
-from rag.retriever import Retriever
+from tools.rag import Retriever
 from utils.logger import Logger
 
 class SmartHomeAIAgent:
