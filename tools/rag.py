@@ -69,10 +69,12 @@ class RAGModule:
             similar_instruction_devices = self.redis.get_value(f"Filter:{similar_instruction_uuid}")
             similar_instruction_feedback = self.redis.get_value(f"Feedback:{similar_instruction_uuid}")
             similar_instruction_plan = self.redis.get_value(f"Plan:{similar_instruction_uuid}")
-            return json.dumps({
+            similar_instruction_info = json.dumps({
                 "status": "success",
                 "instruction": similar_instruction,
                 "devices": similar_instruction_devices,
                 "plan": similar_instruction_plan,
                 "feedback": similar_instruction_feedback
             }, ensure_ascii=False)
+            self.logger.log(f"RAG:{similar_instruction_info}")
+            return similar_instruction_info

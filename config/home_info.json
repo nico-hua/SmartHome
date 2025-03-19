@@ -1,0 +1,110 @@
+{
+  "home": {
+    "name": "my_home",
+    "rooms": [
+      {
+        "name": "living_room",
+        "devices": [
+          {
+            "type": "light",
+            "id": "light_living_room",
+            "location": "center of ceiling",
+            "description": "control the brightness and color of the lights in the living room."
+          },
+          {
+            "type": "tv",
+            "id": "tv_living_room",
+            "location": "TV wall",
+            "description": "TV in the living room, with HDMI and streaming support."
+          },
+          {
+            "type": "audio_player",
+            "id": "speaker_living_room",
+            "location": "both sides of the TV",
+            "description": "the living room's audio_player supports playing music and movie sound effects."
+          },
+          {
+            "type": "curtain",
+            "id": "curtain_living_room",
+            "location": "window",
+            "description": "the curtain in the living room support automatic opening and closing and position adjustment."
+          }
+        ]
+      },
+      {
+        "name": "master_bedroom",
+        "devices": [
+          {
+            "type": "light",
+            "id": "light_master_bedroom",
+            "location": "bedside",
+            "description": "control the brightness and color of the lights in the master bedroom."
+          },
+          {
+            "type": "air_conditioner",
+            "id": "ac_master_bedroom",
+            "location": "wall",
+            "description": "the air conditioner in the master bedroom supports temperature and mode adjustment."
+          },
+          {
+            "type": "curtain",
+            "id": "curtain_master_bedroom",
+            "location": "window",
+            "description": "the curtain in the master bedroom support automatic opening and closing and position adjustment."
+          }
+        ]
+      },
+      {
+        "name": "guest_bedroom",
+        "devices": [
+          {
+            "type": "light",
+            "id": "light_guest_bedroom",
+            "location": "center of ceiling",
+            "description": "control the brightness and color of lights in the second bedroom."
+          },
+          {
+            "type": "air_conditioner",
+            "id": "ac_guest_bedroom",
+            "location": "wall",
+            "description": "the air conditioner in the second bedroom supports temperature and mode adjustment."
+          },
+          {
+            "type": "curtain",
+            "id": "curtain_guest_bedroom",
+            "location": "window",
+            "description": "The curtains in the second bedroom support automatic opening and closing and position adjustment."
+          }
+        ]
+      },
+      {
+        "name": "kitchen",
+        "devices": [
+          {
+            "type": "light",
+            "id": "light_kitchen",
+            "location": "center of ceiling",
+            "description": "control the brightness and color of your kitchen lights."
+          }
+        ]
+      },
+      {
+        "name": "bathroom",
+        "devices": [
+          {
+            "type": "light",
+            "id": "light_bathroom",
+            "location": "center of ceiling",
+            "description": "control the brightness and color of your bathroom lights."
+          },
+          {
+            "type": "curtain",
+            "id": "curtain_bathroom",
+            "location": "window",
+            "description": "the curtains in the bathroom support automatic opening and closing and position adjustment."
+          }
+        ]
+      }
+    ]
+  }
+}

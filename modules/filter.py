@@ -48,7 +48,6 @@ class FilterModule:
                 devices = response
             else:
                 devices = json.loads(response)
-            self.logger.log(f"Parsed Devices: {devices}")
             # Step 4: 将结果存储到redis
             key = f"Filter:{self.uuid}"
             self.redis.set_value(key, response)
