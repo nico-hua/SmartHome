@@ -1,0 +1,37 @@
+{
+    "light": [
+        "1. Turn on the light",
+        "2. Turn off the light",
+        "3. Get current brightness level",
+        "4. Adjust brightness level",
+        "5. Change light color (options: Warm White, Cool White, Red, Blue)"
+    ],
+    "air_conditioner": [
+        "1. Turn on the air conditioner",
+        "2. Turn off the air conditioner",
+        "3. Get current temperature",
+        "4. Adjust temperature",
+        "5. Switch mode (options: cooling, heating, fan)"
+    ],
+    "tv": [
+        "1. Turn on the TV",
+        "2. Turn off the TV",
+        "3. Change channel",
+        "4. Adjust volume",
+        "5. Get current volume"
+    ],
+    "audio_player": [
+        "1. Turn on the audio player",
+        "2. Turn off the audio player",
+        "3. Play music",
+        "4. Pause music",
+        "5. Adjust volume",
+        "6. Get current volume"
+    ],
+    "curtain": [
+        "1. Open the curtain",
+        "2. Close the curtain",
+        "3. Adjust curtain position (options: 0-100, 0: fully closed, 100: fully open)",
+        "4. Get current curtain position"
+    ]
+}

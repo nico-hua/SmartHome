@@ -1,136 +1,216 @@
-# utils/device_api.py
-
 class Light:
     """
     灯光设备 API
     """
-    def set_brightness(self, brightness):
+    def turn_on(self, device_id):
         """
-        设置灯光亮度。
-        :param brightness: 亮度值 (0-100)
+        Turn on the light
+        :param device_id: device ID
         """
-        print(f"[Light] 灯光亮度设置为 {brightness}")
+        print(f"[Light {device_id}] 灯光已打开")
 
-    def set_color(self, color):
+    def turn_off(self, device_id):
         """
-        设置灯光颜色。
-        :param color: 颜色值 (例如 "red", "blue")
+        Turn off the light.
+        :param device_id: device ID
         """
-        print(f"[Light] 灯光颜色设置为 {color}")
-
-    def turn_on(self):
-        """打开灯光"""
-        print("[Light] 灯光已打开")
-
-    def turn_off(self):
-        """关闭灯光"""
-        print("[Light] 灯光已关闭")
-
-    def get_brightness(self):
-        """获取灯光当前亮度"""
-        print("[Light] 获取灯光当前亮度")
+        print(f"[Light {device_id}] 灯光已关闭")
+    
+    def get_brightness(self, device_id):
+        """
+        Get current brightness level.
+        :param device_id: device ID
+        :return: current brightness level
+        """
+        print(f"[Light {device_id}] 获取灯光当前亮度")
         return 50
 
+    def set_brightness(self, device_id, brightness):
+        """
+        Set the light brightness.
+        :param device_id: device ID
+        :param brightness: brightness level (0-100)
+        """
+        print(f"[Light {device_id}] 灯光亮度设置为 {brightness}")
+
+    def set_color(self, device_id, color):
+        """
+        Set the light color
+        :param device_id: device ID
+        :param color: color (options: Warm White, Cool White, Red, Blue)
+        """
+        print(f"[Light {device_id}] 灯光颜色设置为 {color}")
 
 class AirConditioner:
     """
     空调设备 API
     """
-    def set_temperature(self, temperature):
+    def turn_on(self, device_id):
         """
-        设置空调温度。
-        :param temperature: 温度值 (例如 26)
+        Turn on the air conditioner.
+        :param device_id: device ID
         """
-        print(f"[AirConditioner] 空调温度设置为 {temperature}°C")
+        print(f"[AirConditioner {device_id}] 空调已打开")
 
-    def set_mode(self, mode):
+    def turn_off(self, device_id):
         """
-        设置空调模式。
-        :param mode: 模式值 (例如 "cool", "heat")
+        Turn off the air conditioner.
+        :param device_id: device ID
         """
-        print(f"[AirConditioner] 空调模式设置为 {mode}")
+        print(f"[AirConditioner {device_id}] 空调已关闭")
 
-    def turn_on(self):
-        """打开空调"""
-        print("[AirConditioner] 空调已打开")
-
-    def turn_off(self):
-        """关闭空调"""
-        print("[AirConditioner] 空调已关闭")
-
-    def get_temperature(self):
-        """获取空调当前温度"""
-        print("[AirConditioner] 获取空调当前温度")
+    def get_temperature(self, device_id):
+        """
+        Get the current temperature of the air conditioner.
+        :param device_id: device ID
+        :return: current temperature value
+        """
+        print(f"[AirConditioner {device_id}] 获取空调当前温度")
         return 25
 
+    def set_temperature(self, device_id, temperature):
+        """
+        Set the air conditioner temperature.
+        :param device_id: device ID
+        :param temperature: Temperature value (e.g. 26)
+        """
+        print(f"[AirConditioner {device_id}] 空调温度设置为 {temperature}°C")
+
+    def set_mode(self, device_id, mode):
+        """
+        Set air conditioning mode.
+        :param device_id: device ID
+        :param mode: mode type (options: cooling, heating, fan)
+        """
+        print(f"[AirConditioner {device_id}] 空调模式设置为 {mode}")
 
 class TV:
     """
     电视设备 API
     """
-    def set_power(self, status):
+    def turn_on(self, device_id):
         """
-        设置电视电源状态。
-        :param status: 电源状态 (True: 开, False: 关)
+        Turn on the TV.
+        :param device_id: device ID
         """
-        print(f"[TV] 电视电源设置为 {'开' if status else '关'}")
+        print(f"[TV {device_id}] 电视已打开")
 
-    def set_channel(self, channel):
+    def turn_off(self, device_id):
         """
-        设置电视频道。
-        :param channel: 频道号 (例如 1, 2)
+        Turn off the TV.
+        :param device_id: device ID
         """
-        print(f"[TV] 电视频道设置为 {channel}")
+        print(f"[TV {device_id}] 电视已关闭")
 
-    def set_volume(self, volume):
+    def set_channel(self, device_id, channel):
         """
-        设置电视音量。
-        :param volume: 音量值 (0-100)
+        Set TV channels.
+        :param device_id: device ID
+        :param channel: Channel number (options: 1-10)
         """
-        print(f"[TV] 电视音量设置为 {volume}")
+        print(f"[TV {device_id}] 电视频道设置为 {channel}")
+
+    def set_volume(self, device_id, volume):
+        """
+        Set the TV volume.
+        :param device_id: device ID
+        :param volume: volume value (options: 0-100)
+        """
+        print(f"[TV {device_id}] 电视音量设置为 {volume}")
+    
+    def get_volume(self, device_id):
+        """
+        Get the TV volume.
+        :param device_id: device ID
+        :return: current volume value
+        """
+        print(f"[TV {device_id}] 获取电视当前音量")
 
 
 class AudioPlayer:
     """
     音响设备 API
     """
-    def set_volume(self, volume):
+    def turn_on(self, device_id):
         """
-        设置音响音量。
-        :param volume: 音量值 (0-100)
+        Turn on the audio_player.
+        :param device_id: device ID
         """
-        print(f"[AudioPlayer] 音响音量设置为 {volume}")
+        print(f"[AudioPlayer {device_id}] 音响已打开")
 
-    def play_music(self, song):
+    def turn_off(self, device_id):
         """
-        播放音乐。
-        :param song: 歌曲名称
+        Turn off the audio_player.
+        :param device_id: device ID
         """
-        print(f"[AudioPlayer] 正在播放歌曲: {song}")
+        print(f"[AudioPlayer {device_id}] 音响已关闭")
+    def set_volume(self, device_id, volume):
+        """
+        Set the audio_player volume.
+        :param device_id: device ID
+        :param volume: volume value (0-100)
+        """
+        print(f"[AudioPlayer {device_id}] 音响音量设置为 {volume}")
 
-    def stop_music(self):
-        """停止播放音乐"""
-        print("[AudioPlayer] 音乐已停止")
+    def get_volume(self, device_id):
+        """
+        Get the audio_player volume.
+        :param device_id: device ID
+        :return: current volume value
+        """
+        print(f"[AudioPlayer {device_id}] 获取音响当前音量")
+        return 50
+
+    def play_music(self, device_id, song):
+        """
+        Play music.
+        :param device_id: device ID
+        :param song: song title
+        """
+        print(f"[AudioPlayer {device_id}] 正在播放歌曲: {song}")
+
+    def stop_music(self, device_id):
+        """
+        Stop music.
+        :param device_id: device ID
+        """
+        print(f"[AudioPlayer {device_id}] 音乐已停止")
 
 
 class Curtain:
     """
     窗帘设备 API
     """
-    def open(self):
-        """打开窗帘"""
-        print("[Curtain] 窗帘已打开")
-
-    def close(self):
-        """关闭窗帘"""
-        print("[Curtain] 窗帘已关闭")
-
-    def set_position(self, position):
+    def open(self, device_id):
         """
-        设置窗帘位置。
-        :param position: 位置值 (0-100, 0: 完全关闭, 100: 完全打开)
+        Open the curtains.
+        :param device_id: device ID
         """
-        print(f"[Curtain] 窗帘位置设置为 {position}%")
+        print(f"[Curtain {device_id}] 窗帘已打开")
+
+    def close(self, device_id):
+        """
+        Close the curtains.
+        :param device_id: device ID
+        """
+        print(f"[Curtain {device_id}] 窗帘已关闭")
+
+    def set_position(self, device_id, position):
+        """
+        Set curtain position.
+        :param device_id: device ID
+        :param position: position value (options: 0-100, 0: fully closed, 100: fully open)
+        """
+        print(f"[Curtain {device_id}] 窗帘位置设置为 {position}%")
+    
+    def get_position(self, device_id):
+        """
+        Get the current curtain position.
+        :param device_id: device ID
+        :return: current position value
+        """
+        print(f"[Curtain {device_id}] 获取窗帘当前位置")
+        return 50
 
 
 # 设备实例化（可以根据需要调整）
