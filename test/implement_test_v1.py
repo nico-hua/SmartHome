@@ -1,4 +1,4 @@
-from modules.implement import ImplementModule
+from v1.implement import ImplementModule
 
 if __name__ == "__main__":
     # 初始化 Implement 模块

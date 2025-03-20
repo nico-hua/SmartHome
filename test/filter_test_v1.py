@@ -1,4 +1,4 @@
-from modules.filter import FilterModule
+from v1.filter import FilterModule
 import json
 
 if __name__ == "__main__":

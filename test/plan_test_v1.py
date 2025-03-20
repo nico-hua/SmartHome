@@ -1,4 +1,4 @@
-from modules.plan import PlanModule
+from v1.plan import PlanModule
 
 if __name__ == "__main__":
     # 初始化 Plan 模块

@@ -1,4 +1,4 @@
-from modules.clarify import ClarifyModule
+from v1.clarify import ClarifyModule
 
 if __name__ == "__main__":
     clarify_module = ClarifyModule()
