@@ -15,7 +15,7 @@
             "type": "tv",
             "id": "tv_living_room",
             "location": "TV wall",
-            "description": "This device can control the power switch, channel and volume of the living room TV."
+            "description": "This device can control the power switch, channel and volume of the living room television."
           },
           {
             "type": "audio_player",
@@ -102,12 +102,6 @@
             "id": "light_bathroom",
             "location": "center of ceiling",
             "description": "This device can control the switch of the bathroom lights and adjust the brightness and color of the bathroom lights."
-          },
-          {
-            "type": "curtain",
-            "id": "curtain_bathroom",
-            "location": "window",
-            "description": "This device can control the opening and closing of the curtains in the bathroom and adjust their position"
           }
         ]
       }

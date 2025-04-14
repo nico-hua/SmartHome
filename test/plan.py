@@ -1,4 +1,4 @@
-from modules.plan import PlanModule
+from v2.plan import PlanModule
 
 if __name__ == "__main__":
     planModule = PlanModule()

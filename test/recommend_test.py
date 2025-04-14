@@ -1,4 +1,4 @@
-from modules.recommend import RecommendModule
+from v2.recommend import RecommendModule
 
 if __name__ == "__main__":
     home_info_path = "../config/home_info.json"

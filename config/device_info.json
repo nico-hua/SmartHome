@@ -3,7 +3,7 @@
         "1. Turn on the light",
         "2. Turn off the light",
         "3. Get current brightness level",
-        "4. Adjust brightness level",
+        "4. Set brightness level",
         "5. Change light color (options: Warm White, Cool White, Red, Blue)"
     ],
     "air_conditioner": [
