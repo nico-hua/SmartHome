@@ -47,6 +47,7 @@ Instruction History: {instruction_history}
 Current Instruction: {instruction} """
 
 def clarify_instruction(state: GlobalState): 
+    """  判断用户指令是否需要操作设备，并生成回复 """
     instruction = state['instruction'] 
     user_location = state['user_location'] 
     instruction_history = state['instruction_history']
