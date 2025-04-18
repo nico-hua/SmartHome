@@ -37,7 +37,8 @@ clarify_instruction_system_prompt = """
 - 需要操作设备时，require_device为true，instruction_response保持为空：""
 - 不理解用户指令时，你需要结合历史指令推断，必要时提问（require_device = false）
 - 你可以使用 tavily_search_results_json 工具进行网络搜索获取高实时性信息
-- 如果你已经知道答案或者调用工具获取相关信息后，最后必须调用 ClarifyResponse 工具以结构化输出
+- 如果你已经知道如何回复用户指令或者通过调用工具获取相关信息后总结出了答案，立即调用 ClarifyResponse 工具以结构化输出
+- 你最后必须使用 ClarifyResponse 工具以结构化输出
 """
 
 clarify_instruction_human_prompt = """ 

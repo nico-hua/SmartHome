@@ -8,7 +8,7 @@ if __name__ == '__main__':
     #     f.write(graph_png)
     # 初始化状态
     initial_state = {
-        "instruction": "你好",
+        "instruction": "2024年巴黎奥运会100米自由泳决赛冠军的家乡是哪里",
         "user_location": "master_bedroom",
         "user_feedback": "",
         "instruction_history": ["打开客厅的电视"]
