@@ -7,11 +7,40 @@ from device.airconditionerStatus import AirConditionerStatus
 from device.televisionStatus import TelevisionStatus
 from device.audioplayerStatus import AudioPlayerStatus
 from utils.convert_util import convert_room_info_to_json
+import json
+from state.globalState import GlobalState, ClarifyResponse
+
+def structured_response(content: str):
+        """处理结构化输出，兼容多种格式：
+        1. 标准 tool_calls 格式
+        2. ```json 标记格式
+        3. ✦FUNCTION✿: 前缀格式
+        """
+        response = None
+
+        # ```json 标记格式
+        if "```json" in content:
+            try:
+                response = ClarifyResponse(json.loads(content.split("```json")[1].split("```")[0].strip()))
+            except Exception as e:
+                response = ClarifyResponse(instruction_response="发生错误，请稍后重试", require_device=False)
+
+        # ✦FUNCTION✿: 前缀格式
+        if "require_device" in content and "instruction_response" in content:
+            # 尝试从非标准内容中提取 JSON
+            args_start = content.find("{")
+            args_end = content.rfind("}") + 1
+            args_json = content[args_start:args_end]
+            print(args_json)
+            try:
+                response = ClarifyResponse(**json.loads(args_json))
+            except Exception as e:
+                response = ClarifyResponse(instruction_response="发生错误，请稍后重试", require_device=False)
+
+        return response
 
 if __name__ == "__main__":
-    room_info = [
-        {
-            "living_room": [DeviceFullInfo(device_info=DeviceInfo(device_id='ac_living_room', device_type='air_conditioner', location='wall', description='This device can control the air conditioner switch in the living room, set the temperature and mode(options: cooling, heating, fan).', room='living_room'), device_status=AirConditionerStatus(device_id='ac_living_room', power='on', mode='cooling', temperature=23)), DeviceFullInfo(device_info=DeviceInfo(device_id='curtain_living_room', device_type='curtain', location='window', description='This device can control the opening and closing of the curtains in the living room and adjust their position(options: 0-100, 0: fully closed, 100: fully open).', room='living_room'), device_status=CurtainStatus(device_id='curtain_living_room', position=100)), DeviceFullInfo(device_info=DeviceInfo(device_id='light_living_room', device_type='light', location='center of ceiling', description='This device can control the switch of the living room lights and adjust the brightness and color of the living room lights(options: Warm White, Cool White, Orange).', room='living_room'), device_status=LightStatus(device_id='light_living_room', power='on', brightness=100, color='Cool White')), DeviceFullInfo(device_info=DeviceInfo(device_id='speaker_living_room', device_type='audio_player', location='both sides of the TV', description='This device can control the audio player in the living room to adjust the volume, play and stop music(options: 晴天, 稻香, 我记得, 程艾影, 干杯, 我怀念的, 知我, 上里与手抄卷).', room='living_room'), device_status=AudioPlayerStatus(device_id='speaker_living_room', power='on', volume=80, music='晴天')), DeviceFullInfo(device_info=DeviceInfo(device_id='tv_living_room', device_type='television', location='TV wall', description='This device can control the power switch, channel(options: CCTV, Shanghai TV, Beijing TV, Jiangxi TV, Hunan TV, Zhejiang TV, Jiangsu TV) and volume of the living room television.', room='living_room'), device_status=TelevisionStatus(device_id='tv_living_room', power='on', channel='Jiangxi TV', volume=40))]
-        }
-    ]
-    print(convert_room_info_to_json(room_info))
+    content = "✦FUNCTION✿: ClarifyResponse\n✦ARGS✿: {\"require_device\": true, \"instruction_response\": \"\"}"
+    print(structured_response(content))
+
+

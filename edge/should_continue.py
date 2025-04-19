@@ -10,6 +10,11 @@ def should_continue(state: GlobalState):
     if len(last_message.tool_calls) == 1 and last_message.tool_calls[0]['name'] == "ClarifyResponse":
         logger.log("路由到 structured_response")
         return "structured_response"
+    # 非标准格式（
+    content = last_message.content
+    if "require_device" in content and "instruction_response" in content:
+        logger.log("路由到 structured_response")
+        return "structured_response"
     else:
         logger.log("需要调用 tool")
         return "continue"

@@ -38,13 +38,13 @@ clarify_instruction_system_prompt = """
 - 需要操作设备时，require_device为true，instruction_response为空：""
 - 不理解用户指令时，你需要结合历史指令推断，必要时提问（require_device = false）
 - 你可以使用 tavily_search_results_json 工具进行网络搜索获取高实时性信息
-- 如果你已经知道如何回复用户指令或者通过调用工具获取相关信息后总结出了答案，立即调用 ClarifyResponse 工具生成 JSON结构化输出
-- 你最后必须使用 ClarifyResponse 工具生成 JSON 结构化输出，输出格式为：
-   ```json
-    {{
-        "require_device": true/false,
-        "instruction_response": "自然语言回复/空字符串"
-    }}
+- 如果你已经知道如何回复用户指令或者通过调用工具获取相关信息后总结出了答案，立即调用 ClarifyResponse 工具生成结构化输出
+
+【严格输出要求】
+- 你必须且只能使用 ClarifyResponse 工具回复，格式如下：
+  ```json
+  {{"require_device": true/false, "instruction_response": "文本/空字符串"}}
+- 在回复中不要添加额外的信息
 """
 
 clarify_instruction_human_prompt = """ 
@@ -56,12 +56,7 @@ def clarify_instruction(state: GlobalState):
     """  判断用户指令是否需要操作设备，并生成回复 """
     instruction = state['instruction'] 
     user_location = state['user_location'] 
-    user_feedback = state['user_feedback']
     instruction_history = state['instruction_history']
-    # 如果用户反馈不为空，则将指令添加到指令历史中
-    if user_feedback:
-        instruction_history.append(instruction)
-        instruction = user_feedback
     # 为 llm 绑定工具并结构化输出
     model_with_tool = llm.bind_tools(tools=tools, tool_choice="auto")
     # 构造系统消息
@@ -79,4 +74,4 @@ def clarify_instruction(state: GlobalState):
     else:
         messages = [SystemMessage(content=system_message), HumanMessage(content=human_message)] + state['messages']
     response = model_with_tool.invoke(messages)
-    return {"messages": [response], "instruction": instruction, "instruction_history": instruction_history}
+    return {"messages": [response]}

@@ -13,7 +13,6 @@ class GlobalState(MessagesState):
     instruction: str  # 用户指令
     user_location: str  # 用户所在房间位置
     clarify_response: ClarifyResponse  # 用户指令回复
-    user_feedback: str  # 用户反馈
     instruction_history: List[str]  # 用户指令历史
     target_location: List[str]  # 目标房间位置
     environment_info: List[Dict]  # 房间描述信息
