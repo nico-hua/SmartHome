@@ -1,6 +1,6 @@
 from langgraph.graph import START, END, StateGraph
 from langgraph.checkpoint.memory import MemorySaver
-from state.globalState import GlobalState
+from state.global_state import GlobalState
 from node.tool_node import tool_node
 from node.structured_response import structured_response
 from node.clarify_instruction import clarify_instruction

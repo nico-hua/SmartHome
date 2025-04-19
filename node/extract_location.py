@@ -1,4 +1,4 @@
-from state.globalState import GlobalState
+from state.global_state import GlobalState
 from pydantic import BaseModel, Field
 from typing import List
 from llm.model import llm

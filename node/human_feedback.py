@@ -1,4 +1,4 @@
-from state.globalState import GlobalState
+from state.global_state import GlobalState
 from langgraph.graph import END
 
 # 处理用户反馈

@@ -1,4 +1,4 @@
-from state.globalState import GlobalState
+from state.global_state import GlobalState
 from utils.log_util import Logger
 # 根据是否需要调用物理设备，路由到不同节点
 def query_or_control(state: GlobalState):

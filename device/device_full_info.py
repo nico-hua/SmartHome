@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from device.deviceInfo import DeviceInfo
+from device.device_info import DeviceInfo
 from typing import Optional
 
 # 设备信息和设备状态

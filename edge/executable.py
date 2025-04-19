@@ -1,4 +1,4 @@
-from state.globalState import GlobalState
+from state.global_state import GlobalState
 from utils.log_util import Logger
 
 # 根据推荐的设备是否为空，选择路由

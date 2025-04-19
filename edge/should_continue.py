@@ -1,4 +1,4 @@
-from state.globalState import GlobalState
+from state.global_state import GlobalState
 from utils.log_util import Logger
 
 # 用于判断是否需要调用工具

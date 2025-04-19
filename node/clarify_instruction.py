@@ -1,6 +1,6 @@
 from datetime import datetime
 from langchain_core.messages import SystemMessage, HumanMessage
-from state.globalState import GlobalState
+from state.global_state import GlobalState
 from llm.model import llm
 from node.tool_node import tools
 

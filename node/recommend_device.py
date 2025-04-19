@@ -1,4 +1,4 @@
-from state.globalState import GlobalState, ClarifyResponse
+from state.global_state import GlobalState, ClarifyResponse
 from pydantic import BaseModel, Field
 from typing import List
 from utils.convert_util import convert_environment_info

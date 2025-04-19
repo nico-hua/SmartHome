@@ -3,13 +3,13 @@ import pymysql
 import os
 import json
 from typing import List, Dict
-from device.deviceFullInfo import DeviceFullInfo
-from device.deviceInfo import DeviceInfo
-from device.lightStatus import LightStatus
-from device.curtainStatus import CurtainStatus
-from device.airconditionerStatus import AirConditionerStatus
-from device.televisionStatus import TelevisionStatus
-from device.audioplayerStatus import AudioPlayerStatus
+from device.device_full_info import DeviceFullInfo
+from device.device_info import DeviceInfo
+from device.light_status import LightStatus
+from device.curtain_status import CurtainStatus
+from device.airconditioner_status import AirConditionerStatus
+from device.television_status import TelevisionStatus
+from device.audioplayer_status import AudioPlayerStatus
 
 class MySQLUtils:
     def __init__(self, config_path="../config/config.json"):

@@ -1,4 +1,4 @@
-from state.globalState import GlobalState
+from state.global_state import GlobalState
 from utils.mysql_util import MySQLUtils
 
 def get_environment_info(state: GlobalState):

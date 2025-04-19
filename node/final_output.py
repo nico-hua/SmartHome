@@ -1,4 +1,4 @@
-from state.globalState import GlobalState
+from state.global_state import GlobalState
 
 def final_output(state: GlobalState):
     """ 打印用户指令回复 """

@@ -1,9 +1,9 @@
 from typing import List, Dict
-from device.lightStatus import LightStatus
-from device.airconditionerStatus import AirConditionerStatus
-from device.audioplayerStatus import AudioPlayerStatus
-from device.curtainStatus import CurtainStatus
-from device.televisionStatus import TelevisionStatus
+from device.light_status import LightStatus
+from device.airconditioner_status import AirConditionerStatus
+from device.audioplayer_status import AudioPlayerStatus
+from device.curtain_status import CurtainStatus
+from device.television_status import TelevisionStatus
 
 def convert_room_info_to_json(room_info: List[Dict]):
     """

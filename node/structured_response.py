@@ -1,5 +1,4 @@
-from state.globalState import GlobalState
-from state.globalState import ClarifyResponse
+from state.global_state import GlobalState, ClarifyResponse
 from utils.log_util import Logger
 import json
 
