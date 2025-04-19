@@ -1,4 +1,9 @@
 from typing import List, Dict
+from device.lightStatus import LightStatus
+from device.airconditionerStatus import AirConditionerStatus
+from device.audioplayerStatus import AudioPlayerStatus
+from device.curtainStatus import CurtainStatus
+from device.televisionStatus import TelevisionStatus
 
 def convert_room_info_to_json(room_info: List[Dict]):
     """
@@ -65,3 +70,56 @@ def convert_room_info_to_json(room_info: List[Dict]):
                 room_entry["devices"].append(device_entry)
             result["room_info"].append(room_entry)
     return result
+
+def convert_device_info(device_full_info):
+    """格式化单个设备的完整信息"""
+    device_info = device_full_info.device_info
+    device_status = device_full_info.device_status
+    # 添加设备信息
+    device_info_lines = [
+        f"device_id: {device_info.device_id}",
+        f"device_type: {device_info.device_type}",
+        f"device_location: {device_info.location}",
+        f"device_description: {device_info.description}"
+    ]
+    # 添加设备状态
+    if device_status:
+        if isinstance(device_status, LightStatus):
+            device_info_lines.append(
+                f"The current device status: power is {device_status.power}, brightness is set to {device_status.brightness}, and color is {device_status.color}."
+            )
+        elif isinstance(device_status, AirConditionerStatus):
+            device_info_lines.append(
+                f"The current device status: power is {device_status.power}, mode is set to {device_status.mode}, and temperature is {device_status.temperature}°C."
+            )
+        elif isinstance(device_status, AudioPlayerStatus):
+            device_info_lines.append(
+                f"The current device status: power is {device_status.power}, currently playing '{device_status.music}', with volume at {device_status.volume}."
+            )
+        elif isinstance(device_status, CurtainStatus):
+            device_info_lines.append(
+                f"The current device status: its position is set to {device_status.position}."
+            )
+        elif isinstance(device_status, TelevisionStatus):
+            device_info_lines.append(
+                f"The current device status: power is {device_status.power}, tuned to channel '{device_status.channel}', with volume at {device_status.volume}."
+            )
+    return "\n  - " + "\n  - ".join(device_info_lines)
+
+def convert_environment_info(environment_info):
+    """完整格式化环境信息"""
+    descriptions = []
+    for room_data in environment_info:
+        for room_name, devices in room_data.items():
+            device_infos = [convert_device_info(device) for device in devices]
+            descriptions.append(f"{room_name}:" + "\n".join(device_infos))
+    return "\n\n".join(descriptions)
+
+def convert_recommended_devices_functions(recommended_devices_functions: List[Dict[str, List[str]]]) -> str:
+    """ 将推荐设备的功能描述格式化为字符串，方便用于 prompt 插入 """
+    formatted = []
+    for device_func in recommended_devices_functions:
+        for device, functions in device_func.items():
+            func_lines = "\n  - " + "\n  - ".join(functions) if functions else "  - No available functions"
+            formatted.append(f"{device}:\n{func_lines}")
+    return "\n\n".join(formatted)

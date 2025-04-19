@@ -8,7 +8,7 @@ if __name__ == '__main__':
     #     f.write(graph_png)
     # 初始化状态
     initial_state = {
-        "instruction": "你好",
+        "instruction": "我要在客厅开一个派对",
         "user_location": "master_bedroom",
         "user_feedback": "",
         "instruction_history": []
@@ -20,8 +20,16 @@ if __name__ == '__main__':
     logger = Logger()
 
     # 执行图
-    messages = graph.invoke(initial_state, thread)['clarify_response']
-    logger.log(f"状态：{messages}")
+    messages = graph.invoke(initial_state, thread)
+    logger.log(
+        f"状态: "
+        f"clarify_response: {messages['clarify_response']}, "
+        f"instruction: {messages['instruction']}, "
+        f"user_location: {messages['user_location']}, "
+        f"user_feedback: {messages['user_feedback']}"
+        f"instruction_history: {messages['instruction_history']}"
+    )
+
 
     # 如果 feedback 不为空则更新state
     # while True:

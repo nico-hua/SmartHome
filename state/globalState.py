@@ -1,6 +1,6 @@
 from langgraph.graph import MessagesState
 from pydantic import BaseModel, Field
-from typing import List
+from typing import List, Dict
 
 # clarify_instruction 标准输出
 class ClarifyResponse(BaseModel):
@@ -15,3 +15,8 @@ class GlobalState(MessagesState):
     clarify_response: ClarifyResponse  # 用户指令回复
     user_feedback: str  # 用户反馈
     instruction_history: List[str]  # 用户指令历史
+    target_location: List[str]  # 目标房间位置
+    environment_info: List[Dict]  # 房间描述信息
+    recommended_devices: List[str]  # 推荐的物理设备类型列表
+    plan: List[Dict[str, List[str]]]  # 执行计划
+    plan_description: str  # 执行计划描述

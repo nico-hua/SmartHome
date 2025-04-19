@@ -38,5 +38,6 @@ def get_room_info(rooms: List[str]):
     for room in rooms:
         room_data = {room: mysql.get_device_full_info_by_room(room)}
         room_info.append(room_data)
-
+    # 关闭数据库连接
+    mysql.close()
     return convert_room_info_to_json(room_info)

@@ -2,7 +2,7 @@ from collections import defaultdict
 import pymysql
 import os
 import json
-from typing import List
+from typing import List, Dict
 from device.deviceFullInfo import DeviceFullInfo
 from device.deviceInfo import DeviceInfo
 from device.lightStatus import LightStatus
@@ -109,6 +109,17 @@ class MySQLUtils:
             cursor.execute("SELECT function_description FROM device_function WHERE device_type_name = %s", (device_type,))
             results = cursor.fetchall()
             return [result['function_description'] for result in results]
+        
+    def get_recommended_devices_functions(self, recommended_devices: List[str]) -> List[Dict[str, List[str]]]:
+        """ 获取推荐设备的功能描述 """
+        devices_functions = []
+        for device in recommended_devices:
+            device_functions = self.get_device_function_by_type(device)
+            devices_functions.append({device:device_functions})
+        # 关闭数据库连接
+        self.close()
+        return devices_functions
+
             
     def close(self):
         """ 关闭数据库连接 """
