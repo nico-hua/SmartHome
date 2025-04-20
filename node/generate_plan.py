@@ -35,7 +35,8 @@ You MUST follow these rules:
 8. Pay attention to status like power on/off, temperature, position (e.g., curtain), brightness, etc.
 9. The plan should reflect only the necessary changes based on current device states.
 10. Also return a brief and natural **Chinese language** description (`plan_description`) of what this plan is doing, suitable to be read aloud to the user.
-11. Do not return any extra explanation or formatting. Only return structured JSON data matching the following schema:
+11. For actions that require parameters (e.g., brightness, color, temperature, mode, position, channel, volume, music), include them in the action description (e.g., "Set brightness level=50%", "Play music=晴天").
+12. Do not return any extra explanation or formatting. Only return structured JSON data matching the following schema:
 {{
   "plan": [{{"device_id (from the Room Device and Status Information)": ["action1", "action2"]}}, ...], 
   "plan_description": "中文描述"
@@ -55,6 +56,14 @@ Examples:
     {{"ac_living_room": ["Turn on the air conditioner"]}}
   ],
   "plan_description": "正在为您打开客厅的灯和空调。"
+}}
+
+- Instrcution: "把卧室空调调到26度" →
+{{
+  "plan": [
+    {{"ac_master_bedroom": ["Set the temperature of the air conditioner to 26."]}}
+  ],
+  "plan_description": "正在为您把卧室空调调到26度。"
 }}
 
 - Instruction: "关一下空调"（空调已关闭） → 

@@ -72,6 +72,7 @@ def implement_device_action(device_action: DeviceAction):
     # 如果包含多参数代码生成，使用 llm 进行处理
     else:
         implement_device_action_using_llm(device_action)
+        
 def implement_device_action_using_llm(device_action: DeviceAction):
     """ 使用 llm 执行单设备操作 """
     logger = Logger()

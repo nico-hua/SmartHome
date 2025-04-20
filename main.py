@@ -10,7 +10,7 @@ if __name__ == '__main__':
     # 初始化状态
     initial_state = {
         "instruction": "你好",
-        "user_location": "master_bedroom",
+        "user_location": "living_room",
         "instruction_history": [],
         "messages": []
     }
