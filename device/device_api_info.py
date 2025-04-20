@@ -142,7 +142,7 @@ device_api_info = {
             },
             {
                 "name": "turn_off",
-                "description": "Turn off the TV.",
+                "description": "Turn off the television.",
                 "parameters": [
                     {
                         "name": "device_id",
@@ -154,12 +154,12 @@ device_api_info = {
             },
             {
                 "name": "set_channel",
-                "description": "Set the TV channel.",
+                "description": "Set the television channel.",
                 "parameters": [
                     {
                         "name": "device_id",
                         "type": "str",
-                        "description": "The ID of the TV device."
+                        "description": "The ID of the television device."
                     },
                     {
                         "name": "channel",
@@ -171,12 +171,12 @@ device_api_info = {
             },
             {
                 "name": "set_volume",
-                "description": "Set the TV volume.",
+                "description": "Set the television volume.",
                 "parameters": [
                     {
                         "name": "device_id",
                         "type": "str",
-                        "description": "The ID of the TV device."
+                        "description": "The ID of the television device."
                     },
                     {
                         "name": "volume",
@@ -298,3 +298,120 @@ device_api_info = {
         ]
     }
 }
+
+device_api_store = [
+  {
+    "id": "1",
+    "description": "Turn on the light.",
+    "api": "light.turn_on",
+    "args_num": 1
+  },
+  {
+    "id": "2",
+    "description": "Turn off the light.",
+    "api": "light.turn_off",
+    "args_num": 1
+  },
+  {
+    "id": "3",
+    "description": "Set the brightness level of the light.",
+    "api": "light.set_brightness",
+    "args_num": 2
+  },
+  {
+    "id": "4",
+    "description": "Set the color of the light.",
+    "api": "light.set_color",
+    "args_num": 2
+  },
+  {
+    "id": "5",
+    "description": "Turn on the air conditioner.",
+    "api": "air_conditioner.turn_on",
+    "args_num": 1
+  },
+  {
+    "id": "6",
+    "description": "Turn off the air conditioner.",
+    "api": "air_conditioner.turn_off",
+    "args_num": 1
+  },
+  {
+    "id": "7",
+    "description": "Set the temperature of the air conditioner.",
+    "api": "air_conditioner.set_temperature",
+    "args_num": 2
+  },
+  {
+    "id": "8",
+    "description": "Set the mode of the air conditioner.",
+    "api": "air_conditioner.set_mode",
+    "args_num": 2
+  },
+  {
+    "id": "9",
+    "description": "Turn on the television.",
+    "api": "television.turn_on",
+    "args_num": 1
+  },
+  {
+    "id": "10",
+    "description": "Turn off the television.",
+    "api": "television.turn_off",
+    "args_num": 1
+  },
+  {
+    "id": "11",
+    "description": "Set the television channel.",
+    "api": "television.set_channel",
+    "args_num": 2
+  },
+  {
+    "id": "12",
+    "description": "Set the television volume.",
+    "api": "television.set_volume",
+    "args_num": 2
+  },
+  {
+    "id": "13",
+    "description": "Turn on the audio player.",
+    "api": "audio_player.turn_on",
+    "args_num": 1
+  },
+  {
+    "id": "14",
+    "description": "Turn off the audio player.",
+    "api": "audio_player.turn_off",
+    "args_num": 1
+  },
+  {
+    "id": "15",
+    "description": "Set the volume of the audio player.",
+    "api": "audio_player.set_volume",
+    "args_num": 2
+  },
+  {
+    "id": "16",
+    "description": "Play music on the audio player.",
+    "api": "audio_player.play_music",
+    "args_num": 2
+  },
+  {
+    "id": "17",
+    "description": "Open the curtain.",
+    "api": "curtain.open",
+    "args_num": 1
+  },
+  {
+    "id": "18",
+    "description": "Close the curtain.",
+    "api": "curtain.close",
+    "args_num": 1
+  },
+  {
+    "id": "19",
+    "description": "Set the position of the curtain.",
+    "api": "curtain.set_position",
+    "args_num": 2
+  }
+]

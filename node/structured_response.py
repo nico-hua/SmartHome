@@ -15,11 +15,11 @@ def structured_response(state: GlobalState):
     response = None
 
     # 标准 tool_calls 格式
-    if hasattr(last_message, "tool_calls"):
+    if hasattr(last_message, "tool_calls") and last_message.tool_calls:
         try:
             response = ClarifyResponse(**last_message.tool_calls[0]['args'])
         except Exception as e:
-            logger.log(f"structured_response: {e}")
+            logger.log(f"structured_response 1: {e}")
             response = ClarifyResponse(instruction_response="发生错误，请稍后重试", require_device=False)
 
     # ```json 标记格式
@@ -27,7 +27,7 @@ def structured_response(state: GlobalState):
         try:
             response = ClarifyResponse(**json.loads(content.split("```json")[1].split("```")[0].strip()))
         except Exception as e:
-            logger.log(f"structured_response: {e}")
+            logger.log(f"structured_response 2: {e}")
             response = ClarifyResponse(instruction_response="发生错误，请稍后重试", require_device=False)
 
     # ✦FUNCTION✿: 前缀格式
@@ -39,7 +39,7 @@ def structured_response(state: GlobalState):
         try:
             response = ClarifyResponse(**json.loads(args_json))
         except Exception as e:
-            logger.log(f"structured_response: {e}")
+            logger.log(f"structured_response 3: {e}")
             response = ClarifyResponse(instruction_response="发生错误，请稍后重试", require_device=False)
 
     return {**state, "clarify_response": response}
