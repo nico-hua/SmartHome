@@ -5,11 +5,7 @@ import json
 from typing import List, Dict
 from device.device_full_info import DeviceFullInfo
 from device.device_info import DeviceInfo
-from device.light_status import LightStatus
-from device.curtain_status import CurtainStatus
-from device.airconditioner_status import AirConditionerStatus
-from device.television_status import TelevisionStatus
-from device.audioplayer_status import AudioPlayerStatus
+from device.device_status import LightStatus, CurtainStatus, AirConditionerStatus, TelevisionStatus, AudioPlayerStatus
 
 class MySQLUtils:
     def __init__(self, config_path="../config/config.json"):
@@ -119,6 +115,26 @@ class MySQLUtils:
         # 关闭数据库连接
         self.close()
         return devices_functions
+    
+    def get_device_type_by_id(self, device_id: str) -> str:
+        """
+        根据 device_id 查询 device_type
+        :param device_id: 设备ID
+        :return: 设备类型字符串
+        """
+        try:
+            with self.client.cursor() as cursor:
+                cursor.execute("SELECT device_type FROM room_info WHERE device_id=%s", (device_id,))
+                row = cursor.fetchone()
+                if row:
+                    self.close()
+                    return row['device_type']
+                else:
+                    self.close()
+                    raise ValueError(f"设备ID不存在：{device_id}")
+        except Exception as e:
+            self.close()
+            raise Exception(f"查询 device_type 失败: {str(e)}")
 
             
     def close(self):
