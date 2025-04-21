@@ -56,9 +56,9 @@ def extract_location(state: GlobalState):
     instruction_history = state['instruction_history']
     # 创建结构化LLM
     structured_llm = llm.with_structured_output(ExtractedLocation)  
-    # 准备系统消息和用户消息，这里历史指令仅选取最近的五条指令
+    # 准备系统消息和用户消息，这里历史指令仅选取最近的10条指令
     system_message = extract_location_system_prompt.format(room_names=DEFAULT_ROOM_NAMES)
-    human_message = extract_location_human_prompt.format(instruction_history=instruction_history[-5:], instruction=instruction)
+    human_message = extract_location_human_prompt.format(instruction_history="\n".join(instruction_history[-10:]), instruction=instruction)
     # 调用模型
     response = structured_llm.invoke([SystemMessage(content=system_message)]+[HumanMessage(content=human_message)])
     target_location = response.locations if response else []

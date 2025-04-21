@@ -48,7 +48,8 @@ clarify_instruction_system_prompt = """
 """
 
 clarify_instruction_human_prompt = """ 
-Instruction History: {instruction_history}
+Instruction History: 
+{instruction_history}
 
 Current Instruction: {instruction} """
 
@@ -65,7 +66,7 @@ def clarify_instruction(state: GlobalState):
         current_time=datetime.now().strftime("%Y-%m-%d %H:%M")
     )
     human_message = clarify_instruction_human_prompt.format(
-        instruction_history=instruction_history[-5:],  # 只取最近5条历史指令
+        instruction_history="\n".join(instruction_history[-10:]),  # 只取最近10条历史指令
         instruction=instruction
     )
     # 如果 state['messages'] 为空，则使用默认的消息；否则使用 state['messages']

@@ -103,7 +103,7 @@ def generate_plan(state: GlobalState):
         environment_info=environment_info,
         devices_functions=recommended_devices_functions
     )
-    human_message = generate_plan_human_prompt.format(instruction_history=instruction_history[-5:], instruction=instruction)
+    human_message = generate_plan_human_prompt.format(instruction_history="\n".join(instruction_history[-10:]), instruction=instruction)
     response = structured_llm.invoke([
         SystemMessage(content=system_message),
         HumanMessage(content=human_message)

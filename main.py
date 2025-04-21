@@ -34,7 +34,7 @@ if __name__ == '__main__':
         new_initial_state = {
             "instruction": user_feedback,
             "user_location": messages["user_location"],
-            "instruction_history": messages["instruction_history"] + [messages["instruction"]],
+            "instruction_history": messages["instruction_history"] + [f"User:{messages['instruction']}"]+[f"AI:{messages['clarify_response'].instruction_response}"],
             "messages": []
         }
 
