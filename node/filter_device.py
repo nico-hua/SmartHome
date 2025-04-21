@@ -43,7 +43,7 @@ Instruction:
 {instruction}
 """
 
-def recommend_device(state: GlobalState):
+def filter_device(state: GlobalState):
     """ 根据用户指令推荐可能用到的物理设备 """
     instruction = state['instruction']  
     user_location = state['user_location']

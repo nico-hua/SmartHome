@@ -23,7 +23,7 @@ def structured_response(state: GlobalState):
             response = ClarifyResponse(instruction_response="发生错误，请稍后重试", require_device=False)
 
     # ```json 标记格式
-    if "```json" in content:
+    elif "```json" in content:
         try:
             response = ClarifyResponse(**json.loads(content.split("```json")[1].split("```")[0].strip()))
         except Exception as e:
@@ -31,7 +31,7 @@ def structured_response(state: GlobalState):
             response = ClarifyResponse(instruction_response="发生错误，请稍后重试", require_device=False)
 
     # ✦FUNCTION✿: 前缀格式
-    if "require_device" in content and "instruction_response" in content:
+    elif "require_device" in content and "instruction_response" in content:
         # 尝试从非标准内容中提取 JSON
         args_start = content.find("{")
         args_end = content.rfind("}") + 1
@@ -41,5 +41,9 @@ def structured_response(state: GlobalState):
         except Exception as e:
             logger.log(f"structured_response 3: {e}")
             response = ClarifyResponse(instruction_response="发生错误，请稍后重试", require_device=False)
+
+    else:
+        logger.log("structured_response: 无法解析的输出格式")
+        response = ClarifyResponse(instruction_response="发生错误，请稍后重试", require_device=False)
 
     return {**state, "clarify_response": response}
