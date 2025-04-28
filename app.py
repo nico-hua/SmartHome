@@ -15,7 +15,7 @@ html = """
 <!DOCTYPE html>
 <html>
 <head>
-    <title>智能家居助手</title>
+    <title>智能家居AI助手</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         :root {
@@ -290,7 +290,7 @@ html = """
 <body>
     <div class="container">
         <header>
-            <h1>智能家居助手</h1>
+            <h1>智能家居AI助手</h1>
             <p class="subtitle">您的智能生活管家</p>
         </header>
         
