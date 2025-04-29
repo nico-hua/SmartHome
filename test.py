@@ -3,7 +3,7 @@ from device.device_api_info import device_api_store
 import json
 
 chroma = ChromaUtils()
-# chroma.init_chroma_collection()
+chroma.init_chroma_collection()
 # for api in device_api_store:
 #     chroma.embed_and_store_instruction(
 #         id=api["id"],

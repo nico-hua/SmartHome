@@ -471,5 +471,7 @@ async def websocket_endpoint(websocket: WebSocket):
             await websocket.send_text(messages['clarify_response'].instruction_response)
 
         except Exception as e:
+            # 发送AI回复
+            await websocket.send_text("发生错误，请稍后再试。")
             logger.log(f"WebSocket Error: {e}")
             break

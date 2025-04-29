@@ -1,0 +1,176 @@
+{
+    "home": {
+      "name": "my_home",
+      "rooms": [
+        {
+          "name": "living_room",
+          "devices": [
+            {
+              "type": "light",
+              "id": "light_living_room",
+              "location": "center of ceiling",
+              "description": "This device can control the switch of the living room lights and adjust the brightness and color of the living room lights(options: Warm White, Cool White, Orange)."
+            },
+            {
+              "type": "television",
+              "id": "tv_living_room",
+              "location": "TV wall",
+              "description": "This device can control the power switch, channel(options: CCTV, Shanghai TV, Beijing TV, Jiangxi TV, Hunan TV, Zhejiang TV, Jiangsu TV) and volume of the living room television."
+            },
+            {
+              "type": "audio_player",
+              "id": "speaker_living_room",
+              "location": "both sides of the TV",
+              "description": "This device can control the audio player in the living room to adjust the volume, play and stop music(options: 晴天, 稻香, 我记得, 程艾影, 干杯, 我怀念的, 知我, 上里与手抄卷)."
+            },
+            {
+              "type": "curtain",
+              "id": "curtain_living_room",
+              "location": "window",
+              "description": "This device can control the opening and closing of the curtains in the living room and adjust their position(options: 0-100, 0: fully closed, 100: fully open)."
+            },
+            {
+              "type": "air_conditioner",
+              "id": "ac_living_room",
+              "location": "wall",
+              "description": "This device can control the air conditioner switch in the living room, set the temperature and mode(options: cooling, heating, fan)."
+            },
+            {
+                "type": "air_purifier",
+                "id": "air_purifier_living_room",
+                "location": "corner of living room",
+                "description": "This device can turn on/off the air purifier in the living room, and adjust the purification level (options: low, medium, high, auto)."
+            },
+            {
+                "type": "humidifier",
+                "id": "humidifier_living_room",
+                "location": "next to the sofa",
+                "description": "This device can turn on/off the humidifier in the living room, and set the humidity level (options: 20-80)."
+            },
+            {
+                "type": "window",
+                "id": "window_living_room",
+                "location": "wall with balcony",
+                "description": "This device can control the opening and closing of the windows in the living room and adjust their position(options: 0-100, 0: fully closed, 100: fully open)."
+            }
+          ]
+        },
+        {
+          "name": "master_bedroom",
+          "devices": [
+            {
+              "type": "light",
+              "id": "light_master_bedroom",
+              "location": "bedside",
+              "description": "This device can control the switch of the master_bedroom lights and adjust the brightness and color of the master_bedroom lights(options: Warm White, Cool White, Orange)."
+            },
+            {
+              "type": "air_conditioner",
+              "id": "ac_master_bedroom",
+              "location": "wall",
+              "description": "This device can control the air conditioner switch in the master bedroom, set the temperature and mode(options: cooling, heating, fan)."
+            },
+            {
+              "type": "curtain",
+              "id": "curtain_master_bedroom",
+              "location": "window",
+              "description": "This device can control the opening and closing of the curtains in the master bedroom and adjust their position(options: 0-100, 0: fully closed, 100: fully open)."
+            },
+            {
+                "type": "air_purifier",
+                "id": "air_purifier_master_bedroom",
+                "location": "corner of the master_bedroom",
+                "description": "This device can turn on/off the air purifier in the master bedroom, and adjust the purification level (options: low, medium, high, auto)."
+            },
+            {
+                "type": "humidifier",
+                "id": "humidifier_master_bedroom",
+                "location": "near desk",
+                "description": "This device can turn on/off the humidifier in the master bedroom, and set the humidity level (options: 40%, 50%, 60%)."
+            },
+            {
+                "type": "window",
+                "id": "window_master_bedroom",
+                "location": "balcony",
+                "description": "This device can control the opening and closing of the windows in the master bedroom and adjust their position(options: 0-100, 0: fully closed, 100: fully open)."
+            }
+          ]
+        },
+        {
+          "name": "guest_bedroom",
+          "devices": [
+                {
+                    "type": "light",
+                    "id": "light_guest_bedroom",
+                    "location": "center of ceiling",
+                    "description": "This device can control the switch of the guest bedroom lights and adjust the brightness and color of the guest_bedroom lights(options: Warm White, Cool White, Orange)."
+                },
+                {
+                    "type": "air_conditioner",
+                    "id": "ac_guest_bedroom",
+                    "location": "wall",
+                    "description": "This device can control the air conditioner switch in the guest badroom, set the temperature and mode(options: cooling, heating, fan)."
+                },
+                {
+                    "type": "curtain",
+                    "id": "curtain_guest_bedroom",
+                    "location": "window",
+                    "description": "This device can control the opening and closing of the curtains in the guest bedroom and adjust their position(options: 0-100, 0: fully closed, 100: fully open)."
+                },
+                {
+                    "type": "window",
+                    "id": "window_guest_bedroom",
+                    "location": "window",
+                    "description": "This device can control the opening and closing of the windows in the guest bedroom and adjust their position(options: 0-100, 0: fully closed, 100: fully open)."
+                }
+          ]
+        },
+        {
+          "name": "kitchen",
+          "devices": [
+                {
+                    "type": "light",
+                    "id": "light_kitchen",
+                    "location": "center of ceiling",
+                    "description": "This device can control the switch of the kitchen lights and adjust the brightness and color of the kitchen lights(options: Warm White, Cool White, Orange)."
+                },
+                {
+                    "type": "range_hood",
+                    "id": "range_hood_kitchen",
+                    "location": "above stove",
+                    "description": "This device can control the range hood in the kitchen, including power and set speed (options: low, medium, high)."
+                },
+                {
+                    "type": "window",
+                    "id": "window_kitchen",
+                    "location": "above sink",
+                    "description": "This device can control the opening and closing of the windows in the kitchen and adjust their position(options: 0-100, 0: fully closed, 100: fully open)."
+                }
+            ]
+        },
+        {
+          "name": "bathroom",
+          "devices": [
+                {
+                    "type": "light",
+                    "id": "light_bathroom",
+                    "location": "center of ceiling",
+                    "description": "This device can control the switch of the bathroom lights and adjust the brightness and color of the bathroom lights(options: Warm White, Cool White, Orange)."
+                },
+                {
+                    "type": "ventilation_fan",
+                    "id": "fan_bathroom",
+                    "location": "ceiling",
+                    "description": "This device can control the switch of ventilation fan in the bathroom and set speed (options: high, medium, low)."
+                },
+                {
+                    "type": "heater",
+                    "id": "heater_bathroom",
+                    "location": "wall",
+                    "description": "This device can control the bathroom heater, including power and temperature level (options: low, medium, high)."
+                }
+            ]
+        }
+      ]
+    }
+  }

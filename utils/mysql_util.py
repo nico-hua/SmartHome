@@ -5,7 +5,7 @@ import json
 from typing import List, Dict
 from device.device_full_info import DeviceFullInfo
 from device.device_info import DeviceInfo
-from device.device_status import LightStatus, CurtainStatus, AirConditionerStatus, TelevisionStatus, AudioPlayerStatus
+from device.device_status import LightStatus, CurtainStatus, AirConditionerStatus, TelevisionStatus, AudioPlayerStatus, HumidifierStatus, WindowStatus, HeaterStatus, RangeHoodStatus, AirPurifierStatus, VentilationFanStatus
 
 class MySQLUtils:
     def __init__(self, config_path="../config/config.json"):
@@ -86,6 +86,30 @@ class MySQLUtils:
                         cursor.execute(f"SELECT * FROM curtain WHERE device_id IN ({','.join(['%s']*len(device_ids))})", device_ids)
                         for item in cursor.fetchall():
                             status_map[item['device_id']] = CurtainStatus(**item)
+                elif device_type == 'window':
+                    cursor.execute(f"SELECT * FROM windows WHERE device_id IN ({','.join(['%s']*len(device_ids))})", device_ids)
+                    for item in cursor.fetchall():
+                        status_map[item['device_id']] = WindowStatus(**item)
+                elif device_type == 'air_purifier':
+                    cursor.execute(f"SELECT * FROM air_purifier WHERE device_id IN ({','.join(['%s']*len(device_ids))})", device_ids)
+                    for item in cursor.fetchall():
+                        status_map[item['device_id']] = AirPurifierStatus(**item)
+                elif device_type == 'humidifier':
+                    cursor.execute(f"SELECT * FROM humidifier WHERE device_id IN ({','.join(['%s']*len(device_ids))})", device_ids)
+                    for item in cursor.fetchall():
+                        status_map[item['device_id']] = HumidifierStatus(**item)
+                elif device_type == 'ventilation_fan':
+                    cursor.execute(f"SELECT * FROM ventilation_fan WHERE device_id IN ({','.join(['%s']*len(device_ids))})", device_ids)
+                    for item in cursor.fetchall():
+                        status_map[item['device_id']] = VentilationFanStatus(**item)
+                elif device_type == 'range_hood':
+                    cursor.execute(f"SELECT * FROM range_hood WHERE device_id IN ({','.join(['%s']*len(device_ids))})", device_ids)
+                    for item in cursor.fetchall():
+                        status_map[item['device_id']] = RangeHoodStatus(**item)
+                elif device_type == 'heater':
+                    cursor.execute(f"SELECT * FROM heater WHERE device_id IN ({','.join(['%s']*len(device_ids))})", device_ids)
+                    for item in cursor.fetchall():
+                        status_map[item['device_id']] = HeaterStatus(**item)
             # 组合结果
             result = []
             for device_info in device_infos:

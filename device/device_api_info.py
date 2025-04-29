@@ -296,7 +296,283 @@ device_api_info = {
                 "returns": "None"
             }
         ]
-    }
+    },
+    "window": {
+        "description": "Controls the window device, including opening/closing it and setting its position.",
+        "methods": [
+            {
+                "name": "open",
+                "description": "Open the window.",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "type": "str",
+                        "description": "The ID of the window device."
+                    }
+                ],
+                "returns": "None"
+            },
+            {
+                "name": "close",
+                "description": "Close the window.",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "type": "str",
+                        "description": "The ID of the window device."
+                    }
+                ],
+                "returns": "None"
+            },
+            {
+                "name": "set_position",
+                "description": "Set the position of the window.",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "type": "str",
+                        "description": "The ID of the window device."
+                    },
+                    {
+                        "name": "position",
+                        "type": "int",
+                        "description": "The position value to set (options: 0-100, 0: fully closed, 100: fully open)."
+                    }
+                ],
+                "returns": "None"
+            }
+        ]
+    },
+    "air_purifier": {
+        "description": "Controls the air_purifier device, including turning it on/off, setting purification level.",
+        "methods": [
+            {
+                "name": "turn_on",
+                "description": "Turn on the air_purifier.",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "type": "str",
+                        "description": "The ID of the air_purifier device."
+                    }
+                ],
+                "returns": "None"
+            },
+            {
+                "name": "turn_off",
+                "description": "Turn off the air_purifier.",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "type": "str",
+                        "description": "The ID of the air_purifier device."
+                    }
+                ],
+                "returns": "None"
+            },
+            {
+                "name": "set_level",
+                "description": "Set the purification level of the air_purifier.",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "type": "str",
+                        "description": "The ID of the air_purifier device."
+                    },
+                    {
+                        "name": "level",
+                        "type": "str",
+                        "description": "The purification level to set (options: low, medium, high, auto)."
+                    }
+                ],
+                "returns": "None"
+            },
+        ]
+    },
+    "humidifier": {
+        "description": "Controls the humidifier device, including turning it on/off, setting humidity level.",
+        "methods": [
+            {
+                "name": "turn_on",
+                "description": "Turn on the humidifier.",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "type": "str",
+                        "description": "The ID of the humidifier device."
+                    }
+                ],
+                "returns": "None"
+            },
+            {
+                "name": "turn_off",
+                "description": "Turn off the humidifier.",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "type": "str",
+                        "description": "The ID of the humidifier device."
+                    }
+                ],
+                "returns": "None"
+            },
+            {
+                "name": "set_level",
+                "description": "Set the humidify level of the humidifier.",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "type": "str",
+                        "description": "The ID of the humidifier device."
+                    },
+                    {
+                        "name": "level",
+                        "type": "int",
+                        "description": "The humidify level to set (20-80)."
+                    }
+                ],
+                "returns": "None"
+            },
+        ]
+    },
+    "range_hood": {
+        "description": "Controls the range_hood device, including turning it on/off, setting speed.",
+        "methods": [
+            {
+                "name": "turn_on",
+                "description": "Turn on the range_hood.",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "type": "str",
+                        "description": "The ID of the range_hood device."
+                    }
+                ],
+                "returns": "None"
+            },
+            {
+                "name": "turn_off",
+                "description": "Turn off the range_hood.",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "type": "str",
+                        "description": "The ID of the range_hood device."
+                    }
+                ],
+                "returns": "None"
+            },
+            {
+                "name": "set_speed",
+                "description": "Set the speed of the range_hood.",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "type": "str",
+                        "description": "The ID of the range_hood device."
+                    },
+                    {
+                        "name": "speed",
+                        "type": "str",
+                        "description": "The speed to set (options: low, medium, high)."
+                    }
+                ],
+                "returns": "None"
+            },
+        ]
+    },
+    "ventilation_fan": {
+        "description": "Controls the ventilation_fan device, including turning it on/off, setting speed.",
+        "methods": [
+            {
+                "name": "turn_on",
+                "description": "Turn on the ventilation_fan.",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "type": "str",
+                        "description": "The ID of the ventilation_fan device."
+                    }
+                ],
+                "returns": "None"
+            },
+            {
+                "name": "turn_off",
+                "description": "Turn off the ventilation_fan.",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "type": "str",
+                        "description": "The ID of the ventilation_fan device."
+                    }
+                ],
+                "returns": "None"
+            },
+            {
+                "name": "set_speed",
+                "description": "Set the speed of the ventilation_fan.",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "type": "str",
+                        "description": "The ID of the ventilation_fan device."
+                    },
+                    {
+                        "name": "speed",
+                        "type": "str",
+                        "description": "The speed to set (options: low, medium, high)."
+                    }
+                ],
+                "returns": "None"
+            },
+        ]
+    },
+    "heater": {
+        "description": "Controls the heater device, including turning it on/off, setting temperature level.",
+        "methods": [
+            {
+                "name": "turn_on",
+                "description": "Turn on the heater.",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "type": "str",
+                        "description": "The ID of the heater device."
+                    }
+                ],
+                "returns": "None"
+            },
+            {
+                "name": "turn_off",
+                "description": "Turn off the heater.",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "type": "str",
+                        "description": "The ID of the heater device."
+                    }
+                ],
+                "returns": "None"
+            },
+            {
+                "name": "set_level",
+                "description": "Set the temparature level of the heater.",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "type": "str",
+                        "description": "The ID of the heater device."
+                    },
+                    {
+                        "name": "level",
+                        "type": "str",
+                        "description": "The temperature level to set (options: low, medium, high)."
+                    }
+                ],
+                "returns": "None"
+            },
+        ]
+    },
 }
 
 device_api_store = [
@@ -412,6 +688,114 @@ device_api_store = [
     "id": "19",
     "description": "Set the position of the curtain.",
     "api": "curtain.set_position",
+    "args_num": 2
+  },
+  {
+    "id": "20",
+    "description": "Open the window.",
+    "api": "window.open",
+    "args_num": 1
+  },
+  {
+    "id": "21",
+    "description": "Close the window.",
+    "api": "window.close",
+    "args_num": 1
+  },
+  {
+    "id": "22",
+    "description": "Set the position of the window.",
+    "api": "window.set_position",
+    "args_num": 2
+  },
+  {
+    "id": "23",
+    "description": "Turn on the air purifier.",
+    "api": "air_purifier.turn_on",
+    "args_num": 1
+  },
+  {
+    "id": "24",
+    "description": "Turn off the air purifier.",
+    "api": "air_purifier.turn_off",
+    "args_num": 1
+  },
+  {
+    "id": "25",
+    "description": "Set the purification level of the air purifier.",
+    "api": "air_purifier.set_level",
+    "args_num": 2
+  },
+  {
+    "id": "26",
+    "description": "Turn on the humidifier.",
+    "api": "humidifier.turn_on",
+    "args_num": 1
+  },
+  {
+    "id": "27",
+    "description": "Turn off the humidifier.",
+    "api": "humidifier.turn_off",
+    "args_num": 1
+  },
+  {
+    "id": "28",
+    "description": "Set the humidify level of the humidifier.",
+    "api": "humidifier.set_level",
+    "args_num": 2
+  },
+  {
+    "id": "29",
+    "description": "Turn on the range hood.",
+    "api": "range_hood.turn_on",
+    "args_num": 1
+  },
+  {
+    "id": "30",
+    "description": "Turn off the range hood.",
+    "api": "range_hood.turn_off",
+    "args_num": 1
+  },
+  {
+    "id": "31",
+    "description": "Set the speed of the range hood.",
+    "api": "range_hood.set_speed",
+    "args_num": 2
+  },
+  {
+    "id": "32",
+    "description": "Turn on the ventilation fan.",
+    "api": "ventilation_fan.turn_on",
+    "args_num": 1
+  },
+  {
+    "id": "33",
+    "description": "Turn off the ventilation fan.",
+    "api": "ventilation_fan.turn_off",
+    "args_num": 1
+  },
+  {
+    "id": "34",
+    "description": "Set the speed of the ventilation fan.",
+    "api": "ventilation_fan.set_speed",
+    "args_num": 2
+  },
+  {
+    "id": "35",
+    "description": "Turn on the heater.",
+    "api": "heater.turn_on",
+    "args_num": 1
+  },
+  {
+    "id": "36",
+    "description": "Turn off the heater.",
+    "api": "heater.turn_off",
+    "args_num": 1
+  },
+  {
+    "id": "37",
+    "description": "Set the temperature level of the heater.",
+    "api": "heater.set_level",
     "args_num": 2
   }
 ]

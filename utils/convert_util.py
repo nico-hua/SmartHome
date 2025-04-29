@@ -1,5 +1,5 @@
 from typing import List, Dict
-from device.device_status import LightStatus, CurtainStatus, AirConditionerStatus, TelevisionStatus, AudioPlayerStatus
+from device.device_status import LightStatus, CurtainStatus, AirConditionerStatus, TelevisionStatus, AudioPlayerStatus, WindowStatus, HumidifierStatus, HeaterStatus, VentilationFanStatus, RangeHoodStatus, AirPurifierStatus
 
 def convert_room_info_to_json(room_info: List[Dict]):
     """
@@ -60,6 +60,45 @@ def convert_room_info_to_json(room_info: List[Dict]):
                     }
                     device_entry["summary"] = f"电视已{'开启' if device_status.power == 'on' else '关闭'}，频道为{device_status.channel}，音量为{device_status.volume}。"
 
+                elif device_info.device_type == "window":
+                    device_entry["status"] = {"position": device_status.position}
+                    device_entry["summary"] = f"窗户处于{'完全打开' if device_status.position == 100 else f'{device_status.position}% 打开'}状态。"
+
+                elif device_info.device_type == "air_purifier":
+                    device_entry["status"] = {
+                        "power": device_status.power,
+                        "level": device_status.level
+                    }
+                    device_entry["summary"] = f"空气净化器已{'开启' if device_status.power == 'on' else '关闭'}，档位为{device_status.level}。"
+
+                elif device_info.device_type == "humidifier":
+                    device_entry["status"] = {
+                        "power": device_status.power,
+                        "level": device_status.level
+                    }
+                    device_entry["summary"] = f"加湿器已{'开启' if device_status.power == 'on' else '关闭'}，档位为{device_status.level}。"
+
+                elif device_info.device_type == "ventilation_fan":
+                    device_entry["status"] = {
+                        "power": device_status.power,
+                        "speed": device_status.speed
+                    }
+                    device_entry["summary"] = f"通风扇已{'开启' if device_status.power == 'on' else '关闭'}，风速档位为{device_status.speed}。"
+
+                elif device_info.device_type == "range_hood":
+                    device_entry["status"] = {
+                        "power": device_status.power,
+                        "speed": device_status.speed
+                    }
+                    device_entry["summary"] = f"抽油烟机已{'开启' if device_status.power == 'on' else '关闭'}，风速档位为{device_status.speed}。"
+
+                elif device_info.device_type == "heater":
+                    device_entry["status"] = {
+                        "power": device_status.power,
+                        "level": device_status.level
+                    }
+                    device_entry["summary"] = f"暖气已{'开启' if device_status.power == 'on' else '关闭'}，档位为{device_status.level}。"
+
                 else:
                     device_entry["summary"] = "未知设备类型，无法解析状态信息。"
 
@@ -99,6 +138,30 @@ def convert_device_info(device_full_info):
         elif isinstance(device_status, TelevisionStatus):
             device_info_lines.append(
                 f"The current device status: power is {device_status.power}, tuned to channel '{device_status.channel}', with volume at {device_status.volume}."
+            )
+        elif isinstance(device_status, WindowStatus):
+            device_info_lines.append(
+                f"The current device status: its position is set to {device_status.position}."
+            )
+        elif isinstance(device_status, AirPurifierStatus):
+            device_info_lines.append(
+                f"The current device status: power is {device_status.power}, purification level is {device_status.level}."
+            )
+        elif isinstance(device_status, HumidifierStatus):
+            device_info_lines.append(
+                f"The current device status: power is {device_status.power}, humidity level is {device_status.level}."
+            )
+        elif isinstance(device_status, VentilationFanStatus):
+            device_info_lines.append(
+                f"The current device status: power is {device_status.power}, fan speed is {device_status.speed}."
+            )
+        elif isinstance(device_status, RangeHoodStatus):
+            device_info_lines.append(
+                f"The current device status: power is {device_status.power}, fan speed is {device_status.speed}."
+            )
+        elif isinstance(device_status, HeaterStatus):
+            device_info_lines.append(
+                f"The current device status: power is {device_status.power}, heating level is {device_status.level}."
             )
     return "\n  - " + "\n  - ".join(device_info_lines)
 

@@ -5,7 +5,7 @@ from utils.log_util import Logger
 from llm.model import llm
 from device.device_api_info import device_api_info
 from node.generate_plan import DeviceAction
-from device.device import light, curtain, air_conditioner, television, audio_player
+from device.device import light, curtain, air_conditioner, television, audio_player, range_hood, ventilation_fan, air_purifier, window, heater, humidifier
 from utils.mysql_util import MySQLUtils
 from utils.chroma_util import ChromaUtils
 import json

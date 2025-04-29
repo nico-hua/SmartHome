@@ -10,7 +10,7 @@ class RecommendedDevice(BaseModel):
     recommended_devices: List[str] = Field(description="list of device types inferred from the user's instruction and the available devices in the environment.")
 
 # 家庭房间
-DEFAULT_DEVICE_TYPES = ["light","audio_player","curtain","television","air_conditioner"] 
+DEFAULT_DEVICE_TYPES = ["light","audio_player","curtain","television","air_conditioner", "ventilation_fan", "humidifier", "air_purifier", "range_hood", "heater", "window"] 
 
 recommend_device_system_prompt = """You are a smart home AI assistant. Your task is to infer what types of smart devices in the room are needed to fulfill the user's instruction.
 
@@ -21,7 +21,7 @@ You MUST follow these rules:
 1. Only recommend device types that actually exist in the room where the action is to happen.
 2. If the instruction does not specify a room, assume it refers to the user's current room. User's current location: {user_location}.
 3. If a device type is relevant to the instruction but not present in the room (Room Device and Status Information), DO NOT recommend it.
-4. Consider scenario-based intentions (e.g., 'I want to have a party' → may need 'light', 'audio_player', "television", "curtain", "air_conditioner") only if those devices are available in the room.
+4. Consider scenario-based intentions (e.g., 'I want to have a party' → may need related device) only if those devices are available in the room.
 5. Only return a JSON list of device types, such as ["light", "air_conditioner"] or [].
 6. If all devices in the room are unavailable or unsupported for the given instruction, return an empty list `[]`.
 7. Do NOT add any explanation or extra text.

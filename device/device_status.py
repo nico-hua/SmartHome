@@ -32,3 +32,38 @@ class AirConditionerStatus(BaseModel):
 class CurtainStatus(BaseModel):
     device_id: str  # 设备ID
     position: int  # 百分比，0-100
+
+#  Window 类型设备状态描述类
+class WindowStatus(BaseModel):
+    device_id: str  # 设备ID
+    position: int  # 百分比，0-100
+
+# AirPurifier 类型设备状态描述类
+class AirPurifierStatus(BaseModel):
+    device_id: str  # 设备ID
+    power: str  # 开关状态
+    level: str  # 档位
+
+# Humidifier 类型设备状态描述类
+class HumidifierStatus(BaseModel):
+    device_id: str  # 设备ID
+    power: str  # 开关状态
+    level: int  # 档位
+
+# VentilationFan 类型设备状态描述类
+class VentilationFanStatus(BaseModel):
+    device_id: str  # 设备ID
+    power: str  # 开关状态
+    speed: str  # 风速
+
+# RangeHood 类型设备状态描述类
+class RangeHoodStatus(BaseModel):
+    device_id: str  # 设备ID
+    power: str  # 开关状态
+    speed: str  # 风速
+
+# Heater 类型设备状态描述类
+class HeaterStatus(BaseModel):
+    device_id: str  # 设备ID
+    power: str  # 开关状态
+    level: str  # 档位
