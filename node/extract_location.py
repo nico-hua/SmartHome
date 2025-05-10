@@ -4,6 +4,7 @@ from typing import List
 from llm.model import llm
 from langchain_core.messages import SystemMessage, HumanMessage
 from utils.log_util import Logger
+import json
 
 # 家庭房间
 DEFAULT_ROOM_NAMES = ["living_room","master_bedroom","guest_bedroom","kitchen","bathroom"] 
@@ -61,7 +62,16 @@ def extract_location(state: GlobalState):
     human_message = extract_location_human_prompt.format(instruction_history="\n".join(instruction_history[-10:]), instruction=instruction)
     # 调用模型
     response = structured_llm.invoke([SystemMessage(content=system_message)]+[HumanMessage(content=human_message)])
-    target_location = response.locations if response else []
+    target_location = []
+    if response:
+        if isinstance(response, ExtractedLocation):
+            # 提取的房间位置
+            target_location = response.locations
+        else:
+            try:
+                target_location = json.loads(response.content)
+            except json.JSONDecodeError:
+                target_location = []
     # 确保提取的位置信息都在 DEFAULT_ROOM_NAMES 中
     target_location = [room for room in target_location if room in DEFAULT_ROOM_NAMES]
     # 判断提取的房间位置是否为空，如果为空，则加入用户位置

@@ -5,6 +5,7 @@ from utils.convert_util import convert_environment_info
 from utils.log_util import Logger
 from llm.model import llm
 from langchain_core.messages import SystemMessage, HumanMessage
+import json
 
 class RecommendedDevice(BaseModel):
     recommended_devices: List[str] = Field(description="list of device types inferred from the user's instruction and the available devices in the environment.")
@@ -58,7 +59,15 @@ def filter_device(state: GlobalState):
     human_message = recommend_device_human_prompt.format(instruction_history="\n".join(instruction_history[-10:]), instruction=instruction)
     # 调用模型
     response = structured_llm.invoke([SystemMessage(content=system_message)]+[HumanMessage(content=human_message)])
-    recommended_devices = response.recommended_devices if response else []
+    recommended_devices = []
+    if response:
+        if isinstance(response, RecommendedDevice):
+            recommended_devices = response.recommended_devices
+        else:
+            try:
+                recommended_devices = json.loads(response.content)
+            except json.JSONDecodeError:
+                recommended_devices = []
     # 确保推荐的设备类型都在 DEFAULT_DEVICE_TYPES 中
     recommended_devices = [device for device in recommended_devices if device in DEFAULT_DEVICE_TYPES]
     logger = Logger()

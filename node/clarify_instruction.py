@@ -4,6 +4,9 @@ from state.global_state import GlobalState
 from llm.model import llm
 from node.tool_node import tools
 
+# 家庭房间
+DEFAULT_ROOM_NAMES = ["living_room","master_bedroom","guest_bedroom","kitchen","bathroom"] 
+
 clarify_instruction_system_prompt = """
 你是一个贴心的智能家居AI助手，任务是判断用户指令是否需要操作设备，并用自然、口语化的中文回复。
 
@@ -33,6 +36,7 @@ clarify_instruction_system_prompt = """
 
 【操作规则】
 - 用户指令与设备有关时，如查询设备或者可能需要操作设备，都必须先调用 get_room_info 工具获取设备状态信息，然后进行回复
+- get_room_info 工具的参数是一个房间列表，必须为 {DEFAULT_ROOM_NAMES} 中的房间名称
 - 如果用户指令是“打开 / 关闭 / 设置设备”，但当前房间没有该设备，则不需要操作设备（require_device = false），回复用户原因
 - 如果用户指令是“打开 / 关闭 / 设置设备”，但当前设备状态已经满足这个指令（如灯已经开、音量已经是目标值），则不需要操作设备（require_device = false），回复用户原因
 - 需要操作设备时，require_device为true，instruction_response为空：""
@@ -44,6 +48,7 @@ clarify_instruction_system_prompt = """
 - 你必须且只能使用 ClarifyResponse 工具回复，格式如下：
   ```json
   {{"require_device": true/false, "instruction_response": "文本/空字符串"}}
+ ```
 - 在回复中不要添加额外的信息
 """
 
@@ -63,7 +68,8 @@ def clarify_instruction(state: GlobalState):
     # 构造系统消息
     system_message = clarify_instruction_system_prompt.format(
         user_location=user_location,
-        current_time=datetime.now().strftime("%Y-%m-%d %H:%M")
+        current_time=datetime.now().strftime("%Y-%m-%d %H:%M"),
+        DEFAULT_ROOM_NAMES=DEFAULT_ROOM_NAMES
     )
     human_message = clarify_instruction_human_prompt.format(
         instruction_history="\n".join(instruction_history[-10:]),  # 只取最近10条历史指令
